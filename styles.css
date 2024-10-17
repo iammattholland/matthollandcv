@@ -1,3 +1,5 @@
+/* Main Body */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -51,28 +53,39 @@ footer {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-
-
-
-
-
 /* Car Animation */
 
 .road {
     position: fixed;
     left: 10%;
     top: 0;
-    width: 5px;
+    width: 4px;
     height: 100%;
     background-color: #333;
+    margin-right:5px;
+}
+
+.road-line {
+    position: fixed;
+    left: 5%;
+    top: 0;
+    width: 2.5px;
+    height: 100%;
+    background-image: repeating-linear-gradient(
+        to bottom,
+        #4e4d4d, /* Color of the dash */
+        #333 10px, /* Dash length (10px) */
+        transparent 10px, /* Start of the gap */
+        transparent 35px /* Length of the gap (25px - 10px = 15px gap) */
+    );
+    z-index: 1; /* Keeps the dashed line visible */
 }
 
 .car {
     position: fixed;
-    left: 0;
+    left: 5.1%;
     top: 10%;
-    margin-left:10px;
-    width: 100px;
+    width: 5%;
     transform: translateY(0);
     transition: transform 0.1s ease-out;
 }

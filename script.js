@@ -1,10 +1,18 @@
 window.addEventListener("scroll", function() {
-    const scrollTop = window.scrollY; // Updated to use window.scrollY
     const car = document.querySelector(".car");
+    const scrollTop = window.scrollY; // Get the vertical scroll position
+    const documentHeight = document.documentElement.scrollHeight - window.innerHeight; // Total scrollable height
 
-    // Adjust this factor to control how fast the car moves as you scroll.
-    const carSpeed = 0.3;
+    // Calculate how far the user has scrolled as a percentage of total scrollable height
+    const scrollPercentage = scrollTop / documentHeight;
 
-    // Update the car's vertical position based on scroll
-    car.style.transform = `translateY(${scrollTop * carSpeed}px)`;
+    // Set the vertical range for the car's movement (from 10% to 90% of the viewport height)
+    const carStartPosition = 5;  // Car starts at 10% from the top of the viewport
+    const carEndPosition = 90;    // Car ends at 90% of the viewport height
+
+    // Calculate the current position of the car based on the scroll percentage
+    const carCurrentPosition = carStartPosition + (carEndPosition - carStartPosition) * scrollPercentage;
+
+    // Update the car's position using translateY in viewport height (vh)
+    car.style.transform = `translateY(${carCurrentPosition}vh)`;
 });
