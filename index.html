@@ -11,29 +11,27 @@
 </head>
 <body>
 
-<header class="header">
+<header class="header" role="banner">
     <h1>Matt Holland</h1>
     <p>Professional Engineer and Project Management Professional</p>
-    <p>Contact me: LinkedIn</p>
+    <p>Contact me: <a href="https://www.linkedin.com/in/mattholland" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
 </header>
 
-<div class="road"></div>
-<div class="road-line"></div>
+<div class="road" role="presentation"></div>
+<div class="road-line" role="presentation"></div>
 <div class="car">
-    <img src="car.png" alt="Car">
+    <img src="car.png" alt="Illustration of a car">
 </div>
 
 <div class="container">
     
-    <section class="introduction section">
-        <h2>Profile</h2>
-        <p>Welcome to my CV</p>
-        <p>Areas of practice</p>
-
+    <section class="introduction section" role="region" aria-labelledby="profile-heading">
+        <h2 id="profile-heading">Profile</h2>
+        <p>Civil engineer and project management professional with over 10 years of experience focused on design and construction in the heavy civil industry.</p>
     </section>
 
-    <section class="certifications section">
-        <h2>Licenses & Certifications</h2>
+    <section class="certifications section" role="region" aria-labelledby="certifications-heading">
+        <h2 id="certifications-heading">Licenses & Certifications</h2>
         <ul class="bullets">
             <li>Professional Engineer (PE) License</li>
             <li>Project Management Professional (PMP) Certification</li>
@@ -41,84 +39,22 @@
         </ul>
     </section>
 
-    <section class="experience section">
-        <h2>Professional Experience</h2>
-           
-        <div class="position">
-            <div class="title-and-logo">
-                <h3>Project Engineer, City of Cambridge</h3>
-                <img src="CityofCambridgeLogo.jpg" alt="City of Cambridge Logo" class="company-logo">
-            </div>
-            <div>            
-                <p><em>2019 - Present</em></p>
-            </div>    
-
-            <ul class="bullets">
-                <li>Managed multiple municipal road reconstruction and streetscaping projects ranging upwards of $11 million in value</li>
-                <li>Reviewed and approved municipal reconstruction design packages of varying types and complexities</li>
-                <li>Completed a Schedule B Municipal Class Environmental Assessment for a new pedestrian bridge crossing the Speed River</li>
-                <li>Prepared unit-price tender documents and led the contract administration process for 7 reconstruction projects</li>
-                <li>Created new Urban Design Guidelines for a unique heritage area in Cambridge with extensive public consultations</li>
-                <li>Led the EASR permit process for construction on GRCA right-of-way with a 3-week turnaround time</li>
-            </ul>
-            <p><strong>Tools:</strong> Microsoft Office, Bluebeam, GIS, AutoCAD, SAP</p>
-        </div>
-                    
+    <section class="experience section" role="region" aria-labelledby="experience-heading">
+        <h2 id="experience-heading">Professional Experience</h2>
         
         <div class="position">
             <div class="title-and-logo">
-                <h3>Senior Construction Coordinator, CRH Group Inc</h3>
-                <img src="CityofCambridgeLogo.jpg" alt="City of Cambridge Logo" class="company-logo">
-            </div>
-            <div>            
-                <p><em>2019 - Present</em></p>
-            </div>    
-
-            <ul class="bullets">
-                <li>Managed multiple municipal road reconstruction and streetscaping projects ranging upwards of $11 million in value</li>
-                <li>Reviewed and approved municipal reconstruction design packages of varying types and complexities</li>
-                <li>Completed a Schedule B Municipal Class Environmental Assessment for a new pedestrian bridge crossing the Speed River</li>
-                <li>Prepared unit-price tender documents and led the contract administration process for 7 reconstruction projects</li>
-                <li>Created new Urban Design Guidelines for a unique heritage area in Cambridge with extensive public consultations</li>
-                <li>Led the EASR permit process for construction on GRCA right-of-way with a 3-week turnaround time</li>
-            </ul>
-            <p><strong>Tools:</strong> Microsoft Office, Bluebeam, GIS, AutoCAD, SAP</p>
-        </div>
-
-        <div class="position">
-            <div class="title-and-logo">
-                <h3>Construction Coordinator, CRH Group Inc/h3>
-                <img src="CityofCambridgeLogo.jpg" alt="City of Cambridge Logo" class="company-logo">
-            </div>
-            <div>            
-                <p><em>2019 - Present</em></p>
-            </div>    
-
-            <ul class="bullets">
-                <li>Managed multiple municipal road reconstruction and streetscaping projects ranging upwards of $11 million in value</li>
-                <li>Reviewed and approved municipal reconstruction design packages of varying types and complexities</li>
-                <li>Completed a Schedule B Municipal Class Environmental Assessment for a new pedestrian bridge crossing the Speed River</li>
-                <li>Prepared unit-price tender documents and led the contract administration process for 7 reconstruction projects</li>
-                <li>Created new Urban Design Guidelines for a unique heritage area in Cambridge with extensive public consultations</li>
-                <li>Led the EASR permit process for construction on GRCA right-of-way with a 3-week turnaround time</li>
-            </ul>
-            <p><strong>Tools:</strong> Microsoft Office, Bluebeam, GIS, AutoCAD, SAP</p>
-        </div>
-
-        <div class="position">
-            <div class="title-and-logo">
                 <h3>Project Engineer, City of Cambridge</h3>
                 <img src="CityofCambridgeLogo.jpg" alt="City of Cambridge Logo" class="company-logo">
             </div>
             <div>            
                 <p><em>2019 - Present</em></p>
             </div>    
-
             <ul class="bullets">
                 <li>Managed multiple municipal road reconstruction and streetscaping projects ranging upwards of $11 million in value</li>
                 <li>Reviewed and approved municipal reconstruction design packages of varying types and complexities</li>
                 <li>Completed a Schedule B Municipal Class Environmental Assessment for a new pedestrian bridge crossing the Speed River</li>
-                <li>Prepared unit-price tender documents and led the contract administration process for 7 reconstruction projects</li>
+                <li>Prepared unit-price tender documents and led the contract administration process for reconstruction projects</li>
                 <li>Created new Urban Design Guidelines for a unique heritage area in Cambridge with extensive public consultations</li>
                 <li>Led the EASR permit process for construction on GRCA right-of-way with a 3-week turnaround time</li>
             </ul>
@@ -127,25 +63,54 @@
 
         <div class="position">
             <div class="title-and-logo">
-                <h3>Project Engineer, City of Cambridge</h3>
-                <img src="CityofCambridgeLogo.jpg" alt="City of Cambridge Logo" class="company-logo">
+                <h3>Senior Construction Coordinator, CRH Canada Inc</h3>
+                <img src="CRHCanadaLogo.jpg" alt="CRH Canada Logo" class="company-logo">
             </div>
             <div>            
-                <p><em>2019 - Present</em></p>
+                <p><em>2017 - 2019</em></p>
             </div>    
-
             <ul class="bullets">
-                <li>Managed multiple municipal road reconstruction and streetscaping projects ranging upwards of $11 million in value</li>
-                <li>Reviewed and approved municipal reconstruction design packages of varying types and complexities</li>
-                <li>Completed a Schedule B Municipal Class Environmental Assessment for a new pedestrian bridge crossing the Speed River</li>
-                <li>Prepared unit-price tender documents and led the contract administration process for 7 reconstruction projects</li>
-                <li>Created new Urban Design Guidelines for a unique heritage area in Cambridge with extensive public consultations</li>
-                <li>Led the EASR permit process for construction on GRCA right-of-way with a 3-week turnaround time</li>
+                <li>Supervised construction crews on major $113 million highway 401 widening project including 8 new bridges and 5 km of road</li>
+                <li>Coordinated construction activities strategically to reduce costs by over $205,000 through creative job planning</li>
+                <li>Forecasted and analyzed project data on a weekly basis and increased project contribution by approximately 16%</li>
+                <li>Delegated work and provided mentorship guidance to 4 newer coordinators based on their individual strengths</li>
+                <li>Produced technical proposals to meet customer requirements for upcoming work with a 100% qualification rate</li>
             </ul>
-            <p><strong>Tools:</strong> Microsoft Office, Bluebeam, GIS, AutoCAD, SAP</p>
+            <p><strong>Tools:</strong> Microsoft Office, Primavera, Bid2Win, AutoCAD</p>
         </div>
 
+        <div class="position">
+            <div class="title-and-logo">
+                <h3>Construction Coordinator, CRH Canada Inc</h3>
+                <img src="CRHCanadaLogo.jpg" alt="CRH Canada Logo" class="company-logo">
+            </div>
+            <div>            
+                <p><em>2015 - 2017</em></p>
+            </div>    
+            <ul class="bullets">
+                <li>Applied engineering judgement for the design and on-site installation of formwork and falsework to meet all requirements</li>
+                <li>Responsible for monthly project payment certificates and subcontractor payments regularly over a million dollars in value</li>
+                <li>Prioritized work appropriately to meet construction deadlines and timing requirements on projects consistently</li>
+                <li>Led the implementation of the “Stop Zone” safety culture project with field staff including the conceptual design and site roll out</li>
+            </ul>
+            <p><strong>Tools:</strong> Microsoft Office, Viewpoint, AutoCAD, Bluebeam</p>
+        </div>
 
+        <div class="position">
+            <div class="title-and-logo">
+                <h3>Structural Intern, Hatch Inc</h3>
+                <img src="HatchLogo.jpg" alt="Hatch Logo" class="company-logo">
+            </div>
+            <div>            
+                <p><em>2013 - 2014</em></p>
+            </div>    
+            <ul class="bullets">
+                <li>Completed calculations for concrete rebar layout, concrete design, rebar pull-out length, steel selection, stress and shear checks</li>
+                <li>Used STAAD Pro, MathCAD, and Excel extensively for structural engineering calculations and analysis</li>
+                <li>Referenced codes and standards in calculations including the Concrete Design Handbook and Handbook of Steel Construction</li>
+            </ul>
+            <p><strong>Tools:</strong> Microsoft Office, STAAD Pro, MathCAD</p>
+        </div>
     </section>
 
     <section class="education section">
@@ -158,11 +123,16 @@
         </ul>
     </section>
 
-    <section class="extracurriculars section">
-        <h2>Extracurriculars</h2>
-        <ul>
-            <li>Volunteer Instructor at Engineering Outreach Program</li>
-            <li>Member of American Society of Civil Engineers (ASCE)</li>
+    <section class="extracurriculars section" role="region" aria-labelledby="extracurriculars-heading">
+        <h2 id="extracurriculars-heading">Extracurriculars</h2>
+        <ul class="bullets">
+            <li>DGSSMS Committee Member (2024 - Present)</li>
+            <li>PMO Committee Member (2019 - Present)</li>
+            <li>City of Cambridge Strategic Plan Team Member (2020 - 2022)</li>
+            <li>Mentor - Big Brothers Big Sisters of Canada (2013 - 2020)</li>
+            <li>Delegate - Engineers Without Border Canada (2012 - 2014)</li>
+            <li>Undergraduate Senator - McMaster Senate (2012 - 2014)</li>
+            <li>Orientation Leader - McMaster Residence Life (2010 - 2015)</li>
         </ul>
     </section>
 
@@ -200,11 +170,12 @@
 
 </div>
 
-<footer>
-    <p>© 2025 Matt Holland. All Rights Reserved.</p>
+<footer role="contentinfo">
+    <p>&copy; 2023 Matt Holland. All rights reserved.</p>
+    <p>Contact: (365) 366-6288 | heymattholland@gmail.com | Kitchener, ON</p>
 </footer>
 
-<script src="script.js"></script>
+<script src="scripts.js"></script>
 
 </body>
 </html>
