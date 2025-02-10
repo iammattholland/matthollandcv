@@ -16,30 +16,25 @@ body {
     user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera, and Edge */
 }
 
+.parallax-wrapper {
+    overflow: hidden; /* Hide overflow to limit the parallax effect to the container width */
+    max-width: 900px; /* Same as sections */
+    margin: 20px auto; /* Centered with auto margins */
+}
+
 header {
     position: relative; /* Ensure the header is positioned relative for the overlay */
     color: white;
     text-align: center;
-    max-width: 900px; /* Same as sections */
-    margin: 20px auto; /* Centered with auto margins */
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     background-color: #ffffff; /* Fallback color if the image doesn't load */
-}
-
-header::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     background-image: url('GoldenGateBridge.png'); /* Replace with your image path */
     background-size: cover; /* Ensures the image covers the entire header */
-    background-position: center; /* Centers the image */
+    background-attachment: fixed; /* Creates the parallax effect */
+    background-position: center center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents the image from repeating */
-    opacity: 0.5; /* Adjust the opacity of the background image */
-    z-index: 1; /* Ensure the overlay is above the background color */
+    height: 400px; /* Adjust the height as needed */
 }
 
 header h1, header h2 {
