@@ -2,7 +2,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
+    margin: 5px;
     padding: 0;
     background-color: white;
     height: 100%;
@@ -22,6 +22,20 @@ header {
     background-position: center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents the image from repeating */
     background-color: #333; /* Fallback color if the image doesn't load */
+}
+
+footer {
+    color: white;
+    text-align: center;
+    max-width: 900px; /* Same as sections */
+    margin: 20px auto; /* Centered with auto margins */
+    padding: 25px;
+    background-color: #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+footer p {
+    color: white;
 }
 
 .container {
@@ -57,20 +71,6 @@ p {
 
 li {
     color: #333;
-}
-
-footer {
-    color: white;
-    text-align: center;
-    max-width: 900px; /* Same as sections */
-    margin: 20px auto; /* Centered with auto margins */
-    padding: 20px;
-    background-color: #333;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-footer p {
-    color: white;
 }
 
 /* Lists */
