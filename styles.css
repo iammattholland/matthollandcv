@@ -24,6 +24,9 @@ header {
     background-position: center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents the image from repeating */
     background-color: #333; /* Fallback color if the image doesn't load */
+
+
+
 }
 .container {
     margin: auto;
@@ -38,13 +41,21 @@ header {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-h1, h2 {
+h1 {
     color: #45612c;
+    font-size: 2.5em;
+
+}
+
+h2 {
+    color: #333;
+    font-size: 1.5em;
 }
 
 h3 {
     color: #292929;
-    margin-top:20px;
+    font-size: 1.25em;
+    
 }
 
 p {
@@ -65,8 +76,12 @@ footer {
     max-width: 900px;
     margin: 20px auto;
     padding: 20px;
-    background-color: rgb(48, 48, 48);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+footer p {
+    color: white; 
 }
 
 /* Lists */
@@ -86,6 +101,26 @@ ul li::marker {
 li {
     margin-bottom: 10px;
 }
+
+/* Link Colors */
+a {
+    color: #45612c; /* Normal link color */
+    text-decoration: none; /* Remove underline */
+}
+
+a:hover {
+    color: #0c47a1; /* Hover link color */
+    text-decoration: underline; /* Add underline on hover */
+}
+
+a:active {
+    color: #0c47a1; /* Active link color */
+}
+
+a:visited {
+    color: #551a8b; /* Visited link color */
+}
+
 
 /* Company Logo */
 
