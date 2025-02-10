@@ -171,10 +171,10 @@ a:visited {
 
 .car {
     position: fixed;
-    left: 5.1%;
-    top: 10%;
-    width: 5%;
-    z-index:1000;
+    left: 5.1%; /* Adjust as needed */
+    top: 10%; /* Initial position */
+    width: 5%; /* Adjust as needed */
+    z-index: 1000;
     transform: translateY(0);
     transition: transform 0.1s ease-out;
 }

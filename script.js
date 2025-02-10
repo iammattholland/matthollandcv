@@ -13,6 +13,12 @@ window.addEventListener("scroll", function() {
     // Calculate the current position of the car based on the scroll percentage
     const carCurrentPosition = carStartPosition + (carEndPosition - carStartPosition) * scrollPercentage;
 
+    // Log values for debugging
+    console.log(`scrollTop: ${scrollTop}`);
+    console.log(`documentHeight: ${documentHeight}`);
+    console.log(`scrollPercentage: ${scrollPercentage}`);
+    console.log(`carCurrentPosition: ${carCurrentPosition}`);
+
     // Update the car's position using translateY in viewport height (vh)
     car.style.transform = `translateY(${carCurrentPosition}vh)`;
 });
