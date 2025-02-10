@@ -1,24 +1,34 @@
 window.addEventListener("scroll", function() {
     const car = document.querySelector(".car");
+    const profileSection = document.querySelector("#profile-heading").offsetTop;
+    const certificationsSection = document.querySelector("#certifications-heading").offsetTop;
+    const experienceSection = document.querySelector("#experience-heading").offsetTop;
+    const educationSection = document.querySelector(".education").offsetTop;
+    const extracurricularsSection = document.querySelector("#extracurriculars-heading").offsetTop;
+    const skillsSection = document.querySelector(".skill").offsetTop;
+    const awardsSection = document.querySelector(".awards").offsetTop;
+
     const scrollTop = window.scrollY; // Get the vertical scroll position
-    const documentHeight = document.documentElement.scrollHeight - window.innerHeight; // Total scrollable height
 
-    // Calculate how far the user has scrolled as a percentage of total scrollable height
-    const scrollPercentage = scrollTop / documentHeight;
+    // Calculate the car's position based on the scroll position
+    let carPosition = profileSection;
 
-    // Set the vertical range for the car's movement (from 10% to 90% of the viewport height)
-    const carStartPosition = 10;  // Car starts at 10% from the top of the viewport
-    const carEndPosition = 90;    // Car ends at 90% of the viewport height
+    if (scrollTop >= profileSection && scrollTop < certificationsSection) {
+        carPosition = profileSection;
+    } else if (scrollTop >= certificationsSection && scrollTop < experienceSection) {
+        carPosition = certificationsSection;
+    } else if (scrollTop >= experienceSection && scrollTop < educationSection) {
+        carPosition = experienceSection;
+    } else if (scrollTop >= educationSection && scrollTop < extracurricularsSection) {
+        carPosition = educationSection;
+    } else if (scrollTop >= extracurricularsSection && scrollTop < skillsSection) {
+        carPosition = extracurricularsSection;
+    } else if (scrollTop >= skillsSection && scrollTop < awardsSection) {
+        carPosition = skillsSection;
+    } else if (scrollTop >= awardsSection) {
+        carPosition = awardsSection;
+    }
 
-    // Calculate the current position of the car based on the scroll percentage
-    const carCurrentPosition = carStartPosition + (carEndPosition - carStartPosition) * scrollPercentage;
-
-    // Log values for debugging
-    console.log(`scrollTop: ${scrollTop}`);
-    console.log(`documentHeight: ${documentHeight}`);
-    console.log(`scrollPercentage: ${scrollPercentage}`);
-    console.log(`carCurrentPosition: ${carCurrentPosition}`);
-
-    // Update the car's position using translateY in viewport height (vh)
-    car.style.transform = `translateY(${carCurrentPosition}vh)`;
+    // Update the car's position using translateY in pixels
+    car.style.transform = `translateY(${carPosition}px)`;
 });
