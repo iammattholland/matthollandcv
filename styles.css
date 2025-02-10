@@ -13,8 +13,8 @@ body {
 header {
     color: white;
     text-align: center;
-    max-width: 900px; /* Same as sections */
-    margin: 20px auto; /* Centered with auto margins */
+    max-width: 900px;
+    margin: 20px auto; 
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     background-image: url('GoldenGateBridge.png'); /* Replace with your image path */
@@ -27,8 +27,8 @@ header {
 footer {
     color: white;
     text-align: center;
-    max-width: 900px; /* Same as sections */
-    margin: 20px auto; /* Centered with auto margins */
+    max-width: 900px;
+    margin: 20px auto; 
     padding: 25px;
     background-color: #333;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -157,7 +157,7 @@ a:visited {
 .car {
     position: fixed;
     left: 5.1%; /* Adjust as needed */
-    top: 10%; /* Initial position */
+    top: 5%; /* Initial position */
     width: 5%; /* Adjust as needed */
     z-index: 1000;
     transform: translateY(0);
@@ -167,4 +167,11 @@ a:visited {
 .car img {
     width: 100%;
     height: auto;
+}
+
+/* Media Query to Hide Car Animation on Small Screens */
+@media (max-width: 1200px) {
+    .car, .road, .road-line {
+        display: none;
+    }
 }
