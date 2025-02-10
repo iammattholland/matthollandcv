@@ -7,6 +7,7 @@ window.addEventListener("scroll", function() {
     const extracurricularsSection = document.querySelector("#extracurriculars-heading").offsetTop;
     const skillsSection = document.querySelector(".skill").offsetTop;
     const awardsSection = document.querySelector(".awards").offsetTop;
+    const footerSection = document.querySelector("footer").offsetTop;
 
     const scrollTop = window.scrollY; // Get the vertical scroll position
 
@@ -25,8 +26,10 @@ window.addEventListener("scroll", function() {
         carPosition = extracurricularsSection;
     } else if (scrollTop >= skillsSection && scrollTop < awardsSection) {
         carPosition = skillsSection;
-    } else if (scrollTop >= awardsSection) {
+    } else if (scrollTop >= awardsSection && scrollTop < footerSection) {
         carPosition = awardsSection;
+    } else if (scrollTop >= footerSection) {
+        carPosition = footerSection;
     }
 
     // Update the car's position using translateY in pixels
