@@ -19,14 +19,15 @@ body {
 .parallax-wrapper {
     overflow: hidden; /* Hide overflow to limit the parallax effect to the container width */
     max-width: 900px; /* Same as sections */
+    max-height: 500px; /* Adjust the height as needed */
     margin: 20px auto; /* Centered with auto margins */
     width: 100%;
-    height: 400px; /* Adjust the height as needed */
+    color: #333;
+
 }
 
 header {
     position: relative; /* Ensure the header is positioned relative for the overlay */
-    color: white;
     text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     background-color: #ffffff; /* Fallback color if the image doesn't load */
