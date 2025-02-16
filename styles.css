@@ -20,7 +20,8 @@ body {
     overflow: hidden; /* Hide overflow to limit the parallax effect to the container width */
     max-width: 900px; /* Same as sections */
     max-height: 500px; /* Adjust the height as needed */
-    margin: 20px auto; /* Centered with auto margins */
+    margin: 20px auto;
+    padding: 25px;
     width: 100%;
     color: #333;
 
