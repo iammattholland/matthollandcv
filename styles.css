@@ -19,7 +19,6 @@ body {
 .parallax-wrapper {
     overflow: hidden; /* Hide overflow to limit the parallax effect to the container width */
     max-width: 900px; /* Same as sections */
-    margin: 20px auto; /* Centered with auto margins */
     width: 100%;
 }
 
