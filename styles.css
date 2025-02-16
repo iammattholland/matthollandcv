@@ -160,8 +160,9 @@ a:visited {
     position: fixed;
     left: 5%;
     top: 0;
-    width: 1.5px;
+    width: 0.5px;
     height: 100%;
+    color: #333;
     background-image: repeating-linear-gradient(
         to bottom,
         #4e4d4d, /* Color of the dash */
