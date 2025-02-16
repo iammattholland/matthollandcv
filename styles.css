@@ -46,6 +46,7 @@ footer {
     color: white;
     text-align: center;
     max-width: 900px; /* Same as sections */
+    width: 100%;
     margin: 20px auto; /* Centered with auto margins */
     padding: 25px;
     background-color: #333;
