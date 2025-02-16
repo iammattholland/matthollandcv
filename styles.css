@@ -175,7 +175,7 @@ animation: fadeIn 2s ease-in-out; /* Apply fade-in animation */
     z-index: 1; /* Keeps the dashed line visible */
     margin: 1px;
     padding: 1px;
-animation: fadeIn 2s ease-in-out; /* Apply fade-in animation */
+    animation: fadeIn 2s ease-in-out; /* Apply fade-in animation */
 }
 
 .car {
@@ -191,6 +191,7 @@ animation: fadeIn 2s ease-in-out; /* Apply fade-in animation */
 .car img {
     width: 100%;
     height: auto;
+    animation: fadeIn 2s ease-in-out; /* Apply fade-in animation */
 }
 
 /* Media Query to Hide Car Animation on Small Screens */
