@@ -21,6 +21,7 @@ body {
     max-width: 900px; /* Same as sections */
     margin: 20px auto; /* Centered with auto margins */
     width: 100%;
+    height: 400px; /* Adjust the height as needed */
 }
 
 header {
@@ -34,7 +35,6 @@ header {
     background-attachment: fixed; /* Creates the parallax effect */
     background-position: center bottom; /* Start the image from the bottom */
     background-repeat: no-repeat; /* Prevents the image from repeating */
-    height: 400px; /* Adjust the height as needed */
 }
 
 header h1, header h2 {
