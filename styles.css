@@ -30,11 +30,11 @@ header {
     position: relative; /* Ensure the header is positioned relative for the overlay */
     text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    background-color: #ffffff; /* Fallback color if the image doesn't load */
-    background-image: url('GoldenGateBridge.png'); /* Replace with your image path */
+    background-color: #333; /* Fallback color if the image doesn't load */
+    background-image: url('GoldenGateBridge.png');
     background-size: cover; /* Ensures the image covers the entire header */
     background-attachment: fixed; /* Creates the parallax effect */
-    background-position: center bottom; /* Start the image from the bottom */
+    background-position: center top; /* Start the image from the bottom */
     background-repeat: no-repeat; /* Prevents the image from repeating */
 }
 
