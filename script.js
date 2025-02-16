@@ -22,5 +22,5 @@ window.addEventListener("scroll", function() {
     const scrollTop = window.scrollY; // Get the vertical scroll position
 
     // Adjust the background position based on the scroll position
-    header.style.backgroundPositionY = `calc(100% - ${scrollTop * 0.8}px)`;
+    header.style.backgroundPositionY = `calc(100% - ${scrollTop}px)`;
 });
