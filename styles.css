@@ -32,7 +32,7 @@ header {
     background-image: url('GoldenGateBridge.png'); /* Replace with your image path */
     background-size: cover; /* Ensures the image covers the entire header */
     background-attachment: fixed; /* Creates the parallax effect */
-    background-position: center center; /* Centers the image */
+    background-position: center bottom; /* Start the image from the bottom */
     background-repeat: no-repeat; /* Prevents the image from repeating */
     height: 400px; /* Adjust the height as needed */
 }
