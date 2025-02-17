@@ -45,11 +45,11 @@ header {
 }
 
 .headshot {
-    max-width: 300px; /* Set the maximum width */
-    max-height: 300px; /* Set the maximum height */
+    max-width: 200px; /* Set the maximum width */
+    max-height: 200px; /* Set the maximum height */
     height: auto;
     border-radius: 50%; /* Optional: make the image circular */
-    margin-left: 20px; /* Adjust the margin as needed */
+    margin-left: 10px; /* Adjust the margin as needed */
 }
 
 header h1, header h2 {
