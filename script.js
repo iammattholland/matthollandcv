@@ -1,3 +1,6 @@
+const preloadImage = new Image();
+preloadImage.src = "CarHeadlights.png";
+
 window.addEventListener("scroll", function() {
     const car = document.querySelector(".car img");
     const scrollTop = window.scrollY; // Get the vertical scroll position
