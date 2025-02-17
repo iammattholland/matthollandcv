@@ -202,7 +202,6 @@ a:visited {
     padding: 1px;
     border-radius: 50%; /* Add border-radius for curved ends */
     animation: fadeIn 2s ease-in-out; 
-    transition: transform 0.1s ease-out; /* Add transition for smooth movement */
 }
 
 .car {
