@@ -213,8 +213,8 @@ a:visited {
 /* Media Query for Mobile Devices */
 @media (max-width: 600px) {
     header, footer, .section {
-        padding: 10px; /* Adjust padding for smaller screens */
-        margin: 10px auto; /* Adjust margin for smaller screens */
+        padding: 5px; /* Adjust padding for smaller screens */
+        margin: 5px auto; /* Adjust margin for smaller screens */
     }
 }
 
