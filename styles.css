@@ -61,6 +61,23 @@ footer p {
     margin: auto;
 }
 
+.profile-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-content p {
+    flex: 1;
+}
+
+.profile-content .headshot {
+    max-width: 150px; /* Adjust the max-width as needed */
+    height: auto;
+    border-radius: 50%; /* Optional: make the image circular */
+    margin-left: 20px; /* Adjust the margin as needed */
+}
+
 .section {
     max-width: 900px;
     width: 100%;
@@ -226,3 +243,4 @@ a:visited {
         opacity: 2;
     }
 }
+
