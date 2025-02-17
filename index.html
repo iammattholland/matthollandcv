@@ -1,8 +1,8 @@
 <!--// Matt Holland's CV / Resume Website //-->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Matt Holland's CV</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Professional Curriculum Vitae and Resume of Matt Holland, Professional Engineer and Project Management Professional">
@@ -16,14 +16,19 @@
     <meta property="og:image" content="path/to/image.jpg">
     <meta property="og:url" content="https://www.example.com">
     <link rel="icon" href="Favicon.png" type="image/x-icon">
-    <title>Matt Holland's CV</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preload" href="CarHeadlights.png" as="image">
 </head>
 <body>
 
-<header class="header parallax-wrapper" role="banner">
-    <h1>Matt Holland</h1>
-    <h2>Professional Engineer and Project Management Professional</h2>
+<header class="header" role="banner">
+    <div class="header-content">
+        <div class="header-text">
+            <h1>Matt Holland</h1>
+            <h2>Professional Engineer and Project Manager</h2>
+        </div>
+        <img src="Matt.png" alt="Matt Holland Profile Picture" class="headshot">
+    </div>
 </header>
 
 <div class="road" role="presentation"></div>
@@ -36,7 +41,15 @@
     
     <section class="introduction section" role="region" aria-labelledby="profile-heading">
         <h2 id="profile-heading">Profile</h2>
-        <p>Civil engineer and project management professional with over 10 years of experience focused on design and construction in the heavy civil industry. Contact me: <a href="https://www.linkedin.com/in/iammattholland" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+        <div class="profile-content">
+            <p>Licensed civil engineer and project management professional with over 10 years of experience focused on design and construction in the heavy civil industry.</p>
+            <p></p>
+            <p><b>Contact me:</b> 
+                <a href="https://www.linkedin.com/in/iammattholland" target="_blank" rel="noopener noreferrer">
+                    LinkedIn <img src="LinkedInIcon.webp" alt="LinkedIn" style="width: 16px; height: 16px; vertical-align: middle;">
+                </a>
+            </p>
+        </div>
     </section>
 
     <section class="certifications section" role="region" aria-labelledby="certifications-heading">
@@ -162,12 +175,11 @@
             <li>McMaster Varsity Tennis Player of the Year, 2014</li>
         </ul>
     </section>
-
-
 </div>
 
 <footer role="contentinfo">
-    <p>&copy; 2025 Matt Holland. All rights reserved. Thanks for stopping by.</p>
+    <p>Think better. Do better. Be better.</p>
+    <p>&copy; 2025 Matt Holland. All rights reserved.</p>
 </footer>
 
 <script src="script.js"></script>

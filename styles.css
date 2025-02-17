@@ -20,8 +20,7 @@ header {
     position: relative; 
     text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    background-color: #333;
-    background-image: url('GoldenGateBridge.png');
+    background: linear-gradient(to right, #333, #45612c);
     background-size: cover; 
     background-attachment: fixed; 
     background-position: center bottom;
@@ -30,9 +29,26 @@ header {
     width: 100%;
     margin: 20px auto;
     padding: 25px;
-    word-wrap: break-word; /* Ensure text wraps within the header */
-    word-break: break-word; /* Break long words if necessary */
-    white-space: normal; /* Allow text to wrap to the next line */
+    word-wrap: break-word;
+    word-break: break-word;
+    white-space: normal; 
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-text {
+    flex: 1;
+}
+
+.headshot {
+    max-width: 150px;
+    max-height: 150px;
+    height: auto;
+    border-radius: 50%; 
 }
 
 header h1, header h2 {
@@ -43,15 +59,15 @@ header h1, header h2 {
 footer {
     color: white;
     text-align: center;    
-    background-color: #333;
+    background: linear-gradient(to right, #333, #45612c);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     max-width: 900px;
     width: 100%;
     margin: 20px auto;
     padding: 25px;
-    word-wrap: break-word; /* Ensure text wraps within the footer */
-    word-break: break-word; /* Break long words if necessary */
-    white-space: normal; /* Allow text to wrap to the next line */
+    word-wrap: break-word; 
+    word-break: break-word; 
+    white-space: normal; 
 }
 
 footer p {
@@ -69,14 +85,14 @@ footer p {
     padding: 25px;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    opacity: 0; /* Initially hide the sections */
-    transform: translateY(20px); /* Move sections down initially */
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Smooth transition */
+    opacity: 0; 
+    transform: translateY(20px); 
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out; 
 }
 
 .section.visible {
-    opacity: 1; /* Fade in the sections */
-    transform: translateY(0); /* Move sections to their original position */
+    opacity: 1;
+    transform: translateY(0); 
 }
 
 h1 {
@@ -165,6 +181,8 @@ a:visited {
     margin-right: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
     animation: fadeIn 2s ease-in-out; 
+    border-radius: 50%; 
+
 }
 
 .road-line {
@@ -184,6 +202,7 @@ a:visited {
     z-index: 1; 
     margin: 1px;
     padding: 1px;
+    border-radius: 50%; /* Add border-radius for curved ends */
     animation: fadeIn 2s ease-in-out; 
 }
 
@@ -205,7 +224,7 @@ a:visited {
 
 /* Media Query*/
 @media (max-width: 1200px) {
-    .car, .road, .road-line {
+    .car, .road, .road-line, .headshot{
         display: none;
     }
 }
@@ -213,8 +232,10 @@ a:visited {
 /* Media Query for Mobile Devices */
 @media (max-width: 600px) {
     .body, .header, .footer, .section {
-        padding: 5px; /* Adjust padding for smaller screens */
-        margin: 5px auto; /* Adjust margin for smaller screens */
+        padding: 10px;
+        margin: 5px auto; 
+        max-width: 100%;
+        box-sizing: border-box; 
     }
 }
 

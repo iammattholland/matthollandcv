@@ -1,20 +1,29 @@
-window.addEventListener("scroll", function() {
-    const car = document.querySelector(".car");
-    const scrollTop = window.scrollY; // Get the vertical scroll position
-    const documentHeight = document.documentElement.scrollHeight - window.innerHeight; // Total scrollable height
+const preloadImage = new Image();
+preloadImage.src = "CarHeadlights.png";
 
-    // Calculate how far the user has scrolled as a percentage of total scrollable height
+window.addEventListener("scroll", function() {
+    const car = document.querySelector(".car img");
+    const scrollTop = window.scrollY; 
+    const documentHeight = document.documentElement.scrollHeight - window.innerHeight; 
+
     const scrollPercentage = scrollTop / documentHeight;
 
-    // Set the vertical range for the car's movement (from 10% to 90% of the viewport height)
-    const carStartPosition = 10;  // Car starts at 10% from the top of the viewport
-    const carEndPosition = 90;    // Car ends at 90% of the viewport height
+    const carStartPosition = 10;
+    const carEndPosition = 90; 
 
-    // Calculate the current position of the car based on the scroll percentage
     const carCurrentPosition = carStartPosition + (carEndPosition - carStartPosition) * scrollPercentage;
 
-    // Update the car's position using translateY in viewport height (vh)
-    car.style.transform = `translateY(${carCurrentPosition}vh)`;
+    car.parentElement.style.transform = `translateY(${carCurrentPosition}vh)`;
+
+    console.log("Switching to headlights image");
+    car.src = "CarHeadlights.png";
+
+    clearTimeout(window.scrollTimeout);
+
+    window.scrollTimeout = setTimeout(function() {
+        console.log("Switching back to original car image");
+        car.src = "Car.png"; // Replace with the path to your original car image
+    }, 200); 
 });
 
 // Intersection Observer to load sections on scroll
