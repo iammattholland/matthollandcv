@@ -8,6 +8,8 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center; /* Center elements horizontally */
+    justify-content: center; /* Center elements vertically */
 
     /* Prevent text selection */
     -webkit-user-select: none; 
@@ -227,11 +229,20 @@ a:visited {
 
 /* Media Query for Mobile Devices */
 @media (max-width: 600px) {
-    .body, .header, .footer, .section {
+    body {
+        align-items: center; /* Center elements horizontally */
+        justify-content: center; /* Center elements vertically */
+    }
+
+    .header, .footer, .section {
         padding: 10px;
         margin: 5px auto; 
         max-width: 100%;
         box-sizing: border-box; 
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center elements horizontally */
+        justify-content: center; /* Center elements vertically */
     }
 }
 
