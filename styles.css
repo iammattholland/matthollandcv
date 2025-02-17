@@ -16,31 +16,17 @@ body {
     user-select: none; 
 }
 
-.parallax-wrapper {
-    overflow: hidden; 
-    max-width: 900px; 
-    max-height: 500px; 
-    margin: 20px auto;
-    padding: 25px;
-    width: 100%;
-    color: #ffffff;
-}
-
 header {
     position: relative; 
     text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     background-color: #333;
-    background-image: url('Bridge.png');
-    background-size: cover; 
-    background-attachment: fixed; 
-    background-position: center bottom;
-    background-repeat: no-repeat; 
 }
 
 header h1, header h2 {
     position: relative; 
     z-index: 2;
+    color:#ffffff;
 }
 
 footer {
