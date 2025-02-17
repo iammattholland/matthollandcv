@@ -181,7 +181,7 @@ a:visited {
     margin-right: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
     animation: fadeIn 2s ease-in-out; 
-    border-radius: 50%; /* Add border-radius for curved ends */
+    border-radius: 50%; 
 
 }
 
@@ -233,7 +233,9 @@ a:visited {
 @media (max-width: 600px) {
     .body, .header, .footer, .section {
         padding: 10px;
-        margin: 5px; 
+        margin: 5px auto; 
+        max-width: 100%;
+        box-sizing: border-box; 
     }
 }
 
