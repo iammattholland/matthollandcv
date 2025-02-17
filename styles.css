@@ -45,8 +45,8 @@ header {
 }
 
 .headshot {
-    max-width: 200px; /* Set the maximum width */
-    max-height: 200px; /* Set the maximum height */
+    max-width: 150px; /* Set the maximum width */
+    max-height: 150px; /* Set the maximum height */
     height: auto;
     border-radius: 50%; /* Optional: make the image circular */
     margin-left: 10px; /* Adjust the margin as needed */
