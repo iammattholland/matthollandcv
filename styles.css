@@ -10,16 +10,16 @@ body {
     flex-direction: column;
 
     /* Prevent text selection */
-    -webkit-user-select: none; /* Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera, and Edge */
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
 }
 
 .parallax-wrapper {
-    overflow: hidden; /* Hide overflow to limit the parallax effect to the container width */
-    max-width: 900px; /* Same as sections */
-    max-height: 500px; /* Adjust the height as needed */
+    overflow: hidden; 
+    max-width: 900px; 
+    max-height: 500px; 
     margin: 20px auto;
     padding: 25px;
     width: 100%;
@@ -27,28 +27,28 @@ body {
 }
 
 header {
-    position: relative; /* Ensure the header is positioned relative for the overlay */
+    position: relative; 
     text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    background-color: #333; /* Fallback color if the image doesn't load */
+    background-color: #333;
     background-image: url('GoldenGateBridge.png');
-    background-size: cover; /* Ensures the image covers the entire header */
-    background-attachment: fixed; /* Creates the parallax effect */
-    background-position: center bottom; /* Start the image from the bottom */
-    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-size: cover; 
+    background-attachment: fixed; 
+    background-position: center bottom;
+    background-repeat: no-repeat; 
 }
 
 header h1, header h2 {
-    position: relative; /* Ensure the text is above the overlay */
+    position: relative; 
     z-index: 2;
 }
 
 footer {
     color: white;
     text-align: center;
-    max-width: 900px; /* Same as sections */
+    max-width: 900px; 
     width: 100%;
-    margin: 20px auto; /* Centered with auto margins */
+    margin: 20px auto;
     padding: 25px;
     background-color: #333;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -112,21 +112,21 @@ li {
 
 /* Link Colors */
 a {
-    color: #45612c; /* Normal link color */
-    text-decoration: none; /* Remove underline */
+    color: #45612c;
+    text-decoration: none; 
 }
 
 a:hover {
-    color: #0c47a1; /* Hover link color */
-    text-decoration: underline; /* Add underline on hover */
+    color: #0c47a1;
+    text-decoration: underline; 
 }
 
 a:active {
-    color: #0c47a1; /* Active link color */
+    color: #0c47a1; 
 }
 
 a:visited {
-    color: #551a8b; /* Visited link color */
+    color: #551a8b; 
 }
 
 /* Company Logo */
@@ -139,9 +139,9 @@ a:visited {
 }
 
 .company-logo {
-    width: 80px; /* Adjust the size of the logo */
+    width: 80px; 
     height: 80px;
-    margin-right: 10px; /* Add space between the title and the logo */
+    margin-right: 10px; 
 }
 
 /* Car Animation */
@@ -154,8 +154,8 @@ a:visited {
     height: 100%;
     background-color: #333;
     margin-right: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add shadow to make the road line look softer */
-animation: fadeIn 2s ease-in-out; /* Apply fade-in animation */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+animation: fadeIn 2s ease-in-out; 
 }
 
 .road-line {
@@ -167,22 +167,22 @@ animation: fadeIn 2s ease-in-out; /* Apply fade-in animation */
     color: #333;
     background-image: repeating-linear-gradient(
         to bottom,
-        #4e4d4d, /* Color of the dash */
-        #333 10px, /* Dash length (10px) */
-        transparent 10px, /* Start of the gap */
-        transparent 35px /* Length of the gap (25px - 10px = 15px gap) */
+        #4e4d4d, 
+        #333 10px, 
+        transparent 10px, 
+        transparent 35px 
     );
-    z-index: 1; /* Keeps the dashed line visible */
+    z-index: 1; 
     margin: 1px;
     padding: 1px;
-    animation: fadeIn 2s ease-in-out; /* Apply fade-in animation */
+    animation: fadeIn 2s ease-in-out; 
 }
 
 .car {
     position: fixed;
-    left: 5.1%; /* Adjust as needed */
-    top: 5%; /* Initial position */
-    width: 5%; /* Adjust as needed */
+    left: 5.1%;
+    top: 5%; 
+    width: 5%; 
     z-index: 1000;
     transform: translateY(0);
     transition: transform 0.1s ease-out;
@@ -191,7 +191,7 @@ animation: fadeIn 2s ease-in-out; /* Apply fade-in animation */
 .car img {
     width: 100%;
     height: auto;
-    animation: fadeIn 2s ease-in-out; /* Apply fade-in animation */
+    animation: fadeIn 2s ease-in-out;
 }
 
 /* Media Query to Hide Car Animation on Small Screens */
