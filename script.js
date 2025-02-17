@@ -16,11 +16,3 @@ window.addEventListener("scroll", function() {
     // Update the car's position using translateY in viewport height (vh)
     car.style.transform = `translateY(${carCurrentPosition}vh)`;
 });
-
-window.addEventListener("scroll", function() {
-    const header = document.querySelector("header");
-    const scrollTop = window.scrollY; // Get the vertical scroll position
-
-    // Adjust the background position based on the scroll position
-    header.style.backgroundPositionY = `calc(100% - ${scrollTop}px)`;
-});
