@@ -34,6 +34,16 @@ header {
     white-space: normal; /* Allow text to wrap to the next line */
 }
 
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-text {
+    flex: 1;
+}
+
 header h1, header h2 {
     z-index: 2;
     color: #ffffff;
