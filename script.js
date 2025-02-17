@@ -16,3 +16,23 @@ window.addEventListener("scroll", function() {
     // Update the car's position using translateY in viewport height (vh)
     car.style.transform = `translateY(${carCurrentPosition}vh)`;
 });
+
+// Intersection Observer to load sections on scroll
+document.addEventListener("DOMContentLoaded", function() {
+    const sections = document.querySelectorAll(".section");
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+});
