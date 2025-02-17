@@ -203,10 +203,18 @@ a:visited {
     animation: fadeIn 3s ease-in-out;
 }
 
-/* Media Query to Hide Car Animation on Small Screens */
+/* Media Query*/
 @media (max-width: 1200px) {
     .car, .road, .road-line {
         display: none;
+    }
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 600px) {
+    header, footer, .section {
+        padding: 10px; /* Adjust padding for smaller screens */
+        margin: 10px auto; /* Adjust margin for smaller screens */
     }
 }
 
