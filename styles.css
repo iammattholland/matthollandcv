@@ -228,8 +228,8 @@ a:visited {
 
 @media (min-width: 768px) and (max-width: 1024px) {
     body {
-        align-items: center; /* Center elements horizontally */
-        justify-content: center; /* Center elements vertically */
+        align-items: center;
+        justify-content: center; 
     }
 
     .header, .footer, .section {
@@ -239,15 +239,14 @@ a:visited {
         box-sizing: border-box; 
         display: flex;
         flex-direction: column;
-        align-items: center; /* Center elements horizontally */
-        justify-content: center; /* Center elements vertically */
+        align-items: center; 
+
     }
 }
 
 @media (max-width: 600px) {
     body {
-        align-items: center; /* Center elements horizontally */
-        justify-content: center; /* Center elements vertically */
+        align-items: center;
     }
 
     .header, .footer, .section {
@@ -257,8 +256,8 @@ a:visited {
         box-sizing: border-box; 
         display: flex;
         flex-direction: column;
-        align-items: center; /* Center elements horizontally */
-        justify-content: center; /* Center elements vertically */
+        align-items: center;
+       
     }
 }
 
