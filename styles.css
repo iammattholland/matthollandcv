@@ -184,7 +184,7 @@ a:visited {
 .car img {
     width: 100%;
     height: auto;
-    animation: fadeIn 2s ease-in-out;
+    animation: fadeIn 3s ease-in-out;
 }
 
 /* Media Query to Hide Car Animation on Small Screens */
