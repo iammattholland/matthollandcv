@@ -181,6 +181,8 @@ a:visited {
     margin-right: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
     animation: fadeIn 2s ease-in-out; 
+    border-radius: 50%; /* Add border-radius for curved ends */
+
 }
 
 .road-line {
