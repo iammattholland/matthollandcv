@@ -30,11 +30,14 @@ header {
     width: 100%;
     margin: 20px auto;
     padding: 25px;
+    word-wrap: break-word; /* Ensure text wraps within the header */
+    word-break: break-word; /* Break long words if necessary */
+    white-space: normal; /* Allow text to wrap to the next line */
 }
 
 header h1, header h2 {
     z-index: 2;
-    color:#ffffff;
+    color: #ffffff;
 }
 
 footer {
@@ -46,7 +49,10 @@ footer {
     width: 100%;
     margin: 20px auto;
     padding: 25px;
-    }
+    word-wrap: break-word; /* Ensure text wraps within the footer */
+    word-break: break-word; /* Break long words if necessary */
+    white-space: normal; /* Allow text to wrap to the next line */
+}
 
 footer p {
     color: white;
