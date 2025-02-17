@@ -229,7 +229,6 @@ a:visited {
 @media (min-width: 768px) and (max-width: 1024px) {
     body {
         align-items: center;
-        justify-content: center; 
     }
 
     .header, .footer, .section {
