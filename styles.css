@@ -44,6 +44,14 @@ header {
     flex: 1;
 }
 
+.headshot {
+    max-width: 300px; /* Set the maximum width */
+    max-height: 300px; /* Set the maximum height */
+    height: auto;
+    border-radius: 50%; /* Optional: make the image circular */
+    margin-left: 20px; /* Adjust the margin as needed */
+}
+
 header h1, header h2 {
     z-index: 2;
     color: #ffffff;
@@ -69,23 +77,6 @@ footer p {
 
 .container {
     margin: auto;
-}
-
-.profile-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.profile-content p {
-    flex: 1;
-}
-
-.profile-content .headshot {
-    max-width: 150px; /* Adjust the max-width as needed */
-    height: auto;
-    border-radius: 50%; /* Optional: make the image circular */
-    margin-left: 20px; /* Adjust the margin as needed */
 }
 
 .section {
@@ -253,4 +244,3 @@ a:visited {
         opacity: 2;
     }
 }
-
