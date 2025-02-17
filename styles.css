@@ -152,7 +152,7 @@ a:visited {
     top: 0;
     width: 4px;
     height: 100%;
-    background-color: #333;
+    background-color: #7f7f7f;
     margin-right: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
 animation: fadeIn 2s ease-in-out; 
@@ -164,11 +164,11 @@ animation: fadeIn 2s ease-in-out;
     top: 0;
     width: 0.5px;
     height: 100%;
-    color: #333;
+    color: #45612c;
     background-image: repeating-linear-gradient(
         to bottom,
-        #4e4d4d, 
-        #333 10px, 
+        #45612c, 
+        #45612c 10px, 
         transparent 10px, 
         transparent 35px 
     );
