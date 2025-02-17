@@ -17,6 +17,7 @@ window.addEventListener("scroll", function() {
     car.parentElement.style.transform = `translateY(${carCurrentPosition}vh)`;
 
     // Switch the car image to one with headlights when the user is scrolling
+    console.log("Switching to headlights image");
     car.src = "CarHeadlights.png"; // Replace with the path to your car image with headlights
 
     // Clear any existing timeout to reset the delay
@@ -24,6 +25,7 @@ window.addEventListener("scroll", function() {
 
     // Set a timeout to switch back to the original car image after scrolling stops
     window.scrollTimeout = setTimeout(function() {
+        console.log("Switching back to original car image");
         car.src = "Car.png"; // Replace with the path to your original car image
     }, 200); // Adjust the delay as needed (200ms in this example)
 });
