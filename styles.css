@@ -194,14 +194,14 @@ a:visited {
         to bottom,
         #45612c, 
         #45612c 10px, 
-        transparent 10x, 
+        transparent 15x, 
         transparent 40px 
     );
     z-index: 1; 
     margin: 1px;
     padding: 1px;
     border-radius: 50%; 
-    animation: fadeInOut 4s infinite;
+    animation: fadeIn 2s ease-in-out; 
 }
 
 .car {
@@ -256,15 +256,6 @@ a:visited {
     }
     100% {
         opacity: 2;
-    }
-}
-
-@keyframes fadeInOut {
-    0%, 100% {
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
     }
 }
 
