@@ -201,7 +201,7 @@ a:visited {
     margin: 1px;
     padding: 1px;
     border-radius: 50%; 
-    animation: fadeIn 2s ease-in-out; 
+    animation: fadeInOut 4s infinite;
 }
 
 .car {
@@ -256,6 +256,15 @@ a:visited {
     }
     100% {
         opacity: 2;
+    }
+}
+
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
     }
 }
 
