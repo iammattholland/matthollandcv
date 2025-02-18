@@ -195,12 +195,12 @@ a:visited {
         #45612c, 
         #45612c 10px, 
         transparent 10px, 
-        transparent 35px 
+        transparent 55px 
     );
     z-index: 1; 
     margin: 1px;
     padding: 1px;
-    border-radius: 50%; /* Add border-radius for curved ends */
+    border-radius: 50%; 
     animation: fadeIn 2s ease-in-out; 
 }
 
