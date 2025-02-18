@@ -1,7 +1,7 @@
 //Car animation on scroll//
 
 const preloadImage = new Image();
-preloadImage.src = "CarHeadlights.png";
+preloadImage.src = "CarHeadlights.webp";
 
 window.addEventListener("scroll", function() {
     const car = document.querySelector(".car img");
@@ -17,12 +17,12 @@ window.addEventListener("scroll", function() {
 
     car.parentElement.style.transform = `translateY(${carCurrentPosition}vh)`;
 
-    car.src = "CarHeadlights.png";
+    car.src = "CarHeadlights.webp";
 
     clearTimeout(window.scrollTimeout);
 
     window.scrollTimeout = setTimeout(function() {
-        car.src = "Car.png";
+        car.src = "Car.webp";
     }, 200); 
 });
 
