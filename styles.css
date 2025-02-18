@@ -194,13 +194,13 @@ a:visited {
         to bottom,
         #45612c, 
         #45612c 10px, 
-        transparent 10px, 
-        transparent 55px 
+        transparent 15px, 
+        transparent 40px 
     );
     z-index: 1; 
     margin: 1px;
     padding: 1px;
-    border-radius: 50%; 
+    border-radius: 80%; 
     animation: fadeIn 2s ease-in-out; 
 }
 
