@@ -45,10 +45,14 @@ const imageObserver = new IntersectionObserver((entries, observer) => {
 
 // Add better scroll performance
 let scrollTimeout;
+let isScrolling = false;  // Track if we're actively scrolling
 const handleScroll = throttle(() => {
     if (scrollTimeout) {
         window.cancelAnimationFrame(scrollTimeout);
     }
+    
+    // Mark as actively scrolling
+    isScrolling = true;
     
     scrollTimeout = window.requestAnimationFrame(() => {
         const car = document.querySelector(".car img");
@@ -62,11 +66,11 @@ const handleScroll = throttle(() => {
         
         car.parentElement.style.transform = `translate3d(0, ${carCurrentPosition}vh, 0)`;
         
-        if (scrollPercentage > 0.1) {
-            car.src = "CarHeadlights.webp";
-        } else {
-            car.src = "Car.webp";
-        }
+        // Turn headlights on only while actively scrolling
+        car.src = isScrolling ? "CarHeadlights.webp" : "Car.webp";
+        
+        // Immediately mark scrolling as finished
+        isScrolling = false;
     });
 }, 16);
 
