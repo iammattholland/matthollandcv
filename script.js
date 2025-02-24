@@ -51,7 +51,9 @@ let isScrolling = false;
 function handleScrollEnd() {
     isScrolling = false;
     const car = document.querySelector(".car img");
-    car.src = "Car.webp";
+    if (car) {  // Add null check
+        car.src = "Car.webp";
+    }
 }
 
 const handleScroll = throttle(() => {
@@ -59,9 +61,11 @@ const handleScroll = throttle(() => {
         window.cancelAnimationFrame(scrollTimeout);
     }
     
+    const car = document.querySelector(".car img");
+    if (!car) return;  // Exit if car element not found
+    
     // Mark as actively scrolling
     isScrolling = true;
-    const car = document.querySelector(".car img");
     car.src = "CarHeadlights.webp";
     
     scrollTimeout = window.requestAnimationFrame(() => {
@@ -132,15 +136,38 @@ function initTheme() {
 }
 
 function toggleTheme() {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
+    try {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    } catch (error) {
+        console.error('Error toggling theme:', error);
+    }
 }
 
 // Initialize theme
 initTheme();
 
 // Add theme toggle event listener
-document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+document.addEventListener('DOMContentLoaded', function() {
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+    }
+});
+
+// Cleanup function for observers
+function cleanup() {
+    if (imageObserver) {
+        imageObserver.disconnect();
+    }
+    if (performanceObserver) {
+        performanceObserver.disconnect();
+    }
+    window.removeEventListener("scroll", handleScroll);
+}
+
+// Add cleanup on page unload
+window.addEventListener('unload', cleanup);

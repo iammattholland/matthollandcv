@@ -9,6 +9,11 @@
     --icon-fill-hover: var(--primary-color);
     --hover-bg: rgba(0, 0, 0, 0.1);
     --gradient: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+    /* Add missing transition variables */
+    --ease-elastic-3: cubic-bezier(0.5, 1.25, 0.75, 1.25);
+    --ease-elastic-4: cubic-bezier(0.5, 1.5, 0.75, 1.25);
+    --ease-3: cubic-bezier(0.25, 0, 0.3, 1);
+    --ease-out-5: cubic-bezier(0, 0, 0, 1);
 }
 
 /* Add transitions for smooth theme switching */
