@@ -90,6 +90,13 @@ footer {
 .position {
     break-inside: avoid;
     page-break-inside: avoid;
+    margin-bottom: 20px !important;
+    padding-bottom: 15px !important;
+    border-bottom: 1px solid #ccc;
+}
+
+.position:last-child {
+    border-bottom: none;
 }
 
 /* Optimize font sizes for print */
@@ -112,4 +119,58 @@ p, li { font-size: 11pt !important; }
         --text-color: #000000 !important;
         --background-color: #ffffff !important;
     }
+}
+
+/* Hide theme toggle button when printing */
+.theme-toggle {
+    display: none !important;
+}
+
+/* Improve professional experience section printing */
+.position {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 20px !important;
+    padding-bottom: 15px !important;
+    border-bottom: 1px solid #ccc;
+}
+
+.position:last-child {
+    border-bottom: none;
+}
+
+/* Ensure company logos print properly */
+.title-and-logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px !important;
+}
+
+/* Adjust spacing for experience items */
+.experience.section {
+    padding-top: 0 !important;
+}
+
+.position h3 {
+    margin-top: 0 !important;
+    margin-bottom: 5px !important;
+}
+
+/* Ensure dates are visible and properly formatted */
+.position p em {
+    color: #666 !important;
+    font-style: italic !important;
+}
+
+/* Adjust list spacing in experience section */
+.position ul.bullets {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+/* Tools section in each position */
+.position p strong {
+    display: block;
+    margin-top: 10px !important;
+    color: #333 !important;
 }
