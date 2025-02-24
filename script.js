@@ -45,7 +45,15 @@ const imageObserver = new IntersectionObserver((entries, observer) => {
 
 // Add better scroll performance
 let scrollTimeout;
-let isScrolling = false;  // Track if we're actively scrolling
+let isScrolling = false;
+
+// Handle scroll end
+function handleScrollEnd() {
+    isScrolling = false;
+    const car = document.querySelector(".car img");
+    car.src = "Car.webp";
+}
+
 const handleScroll = throttle(() => {
     if (scrollTimeout) {
         window.cancelAnimationFrame(scrollTimeout);
@@ -53,9 +61,10 @@ const handleScroll = throttle(() => {
     
     // Mark as actively scrolling
     isScrolling = true;
+    const car = document.querySelector(".car img");
+    car.src = "CarHeadlights.webp";
     
     scrollTimeout = window.requestAnimationFrame(() => {
-        const car = document.querySelector(".car img");
         const scrollTop = window.scrollY;
         const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
         const scrollPercentage = scrollTop / documentHeight;
@@ -65,13 +74,11 @@ const handleScroll = throttle(() => {
         const carCurrentPosition = carStartPosition + (carEndPosition - carStartPosition) * scrollPercentage;
         
         car.parentElement.style.transform = `translate3d(0, ${carCurrentPosition}vh, 0)`;
-        
-        // Turn headlights on only while actively scrolling
-        car.src = isScrolling ? "CarHeadlights.webp" : "Car.webp";
-        
-        // Immediately mark scrolling as finished
-        isScrolling = false;
     });
+
+    // Set timeout to handle scroll end
+    clearTimeout(window.scrollEndTimer);
+    window.scrollEndTimer = setTimeout(handleScrollEnd, 50);
 }, 16);
 
 window.addEventListener("scroll", handleScroll, { passive: true });
