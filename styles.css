@@ -11,35 +11,7 @@
     --gradient: linear-gradient(to right, var(--secondary-color), var(--primary-color));
 }
 
-/* Add dark mode support */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --primary-color: #7da861;
-        --secondary-color: #1a1a1a;
-        --text-color: #ffffff;
-        --background-color: #121212;
-        --shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        --icon-fill: var(--text-color);
-        --icon-fill-hover: var(--primary-color);
-        --hover-bg: rgba(255, 255, 255, 0.1);
-    }
-
-    body {
-        background-color: var(--background-color);
-    }
-
-    .section {
-        background-color: var(--secondary-color);
-        color: var(--text-color);
-    }
-
-    header, footer {
-        background: var(--gradient);
-    }
-}
-
-/* Main Body */
-
+/* Add transitions for smooth theme switching */
 body {
     font-family: 'Inter', Arial, sans-serif;
     margin: 5px;
@@ -49,6 +21,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center; 
+    transition: background-color 0.3s ease;
 
     /* Prevent text selection */
     -webkit-user-select: none; 
@@ -124,7 +97,7 @@ footer p {
     box-shadow: var(--shadow);
     opacity: 0; 
     transform: translateY(20px); 
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out; 
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; 
 }
 
 .section.visible {
@@ -369,7 +342,7 @@ a:visited {
 .theme-toggle {
     background: none;
     border: none;
-    padding: 0;
+    padding: 0.5rem;
     inline-size: 2.5rem;
     block-size: 2.5rem;
     aspect-ratio: 1;
@@ -382,6 +355,7 @@ a:visited {
     top: 1rem;
     right: 1rem;
     z-index: 1001;
+    color: var(--text-color);
 }
 
 .theme-toggle:hover {
@@ -449,4 +423,30 @@ a:visited {
             transform: rotateZ(-25deg);
         }
     }
+}
+
+/* Update dark theme styles */
+[data-theme="dark"] {
+    --primary-color: #7da861;
+    --secondary-color: #1a1a1a;
+    --text-color: #ffffff;
+    --background-color: #121212;
+    --shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    --icon-fill: var(--text-color);
+    --icon-fill-hover: var(--primary-color);
+    --hover-bg: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] body {
+    background-color: var(--background-color);
+}
+
+[data-theme="dark"] .section {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] header,
+[data-theme="dark"] footer {
+    background: var(--gradient);
 }

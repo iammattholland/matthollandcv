@@ -109,13 +109,14 @@ performanceObserver.observe({ entryTypes: ['largest-contentful-paint'] });
 
 // Theme toggle functionality
 function initTheme() {
-    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    const storedTheme = localStorage.getItem('theme');
-    
-    if (storedTheme) {
+    // Set light mode as default
+    if (!localStorage.getItem('theme')) {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+    } else {
+        // Use stored preference if it exists
+        const storedTheme = localStorage.getItem('theme');
         document.documentElement.setAttribute('data-theme', storedTheme);
-    } else if (prefersDarkScheme.matches) {
-        document.documentElement.setAttribute('data-theme', 'dark');
     }
 }
 
