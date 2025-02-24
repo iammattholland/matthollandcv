@@ -437,6 +437,34 @@ a:visited {
     --hover-bg: rgba(255, 255, 255, 0.1);
 }
 
+/* Add text color overrides for dark mode */
+[data-theme="dark"] p,
+[data-theme="dark"] li,
+[data-theme="dark"] h3 {
+    color: rgba(255, 255, 255, 0.87) !important; /* Slightly dimmed white for better readability */
+}
+
+[data-theme="dark"] h1,
+[data-theme="dark"] h2 {
+    color: var(--primary-color) !important; /* Keep headings in theme color */
+}
+
+[data-theme="dark"] a {
+    color: #9dc183; /* Lighter version of primary color for links */
+}
+
+[data-theme="dark"] a:hover {
+    color: #b8d4a3;
+}
+
+[data-theme="dark"] ul.bullets {
+    color: var(--primary-color);
+}
+
+[data-theme="dark"] ul li::marker {
+    color: var(--primary-color);
+}
+
 [data-theme="dark"] body {
     background-color: var(--background-color);
 }
