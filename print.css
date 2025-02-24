@@ -1,0 +1,176 @@
+/* Reset background colors and shadows for printing */
+body, .section, header, footer {
+    background: none !important;
+    color: black !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Hide decorative elements */
+.car, 
+.road, 
+.road-line {
+    display: none !important;
+}
+
+/* Adjust header for print */
+header {
+    border-bottom: 2px solid #000;
+    margin-bottom: 20px !important;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Ensure text is black for better printing */
+h1, h2, h3, p, li {
+    color: black !important;
+}
+
+/* Adjust section spacing */
+.section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin: 15px 0 !important;
+    border: 1px solid #ccc;
+    padding: 15px !important;
+}
+
+/* Ensure company logos print well */
+.company-logo {
+    max-width: 60px !important;
+    height: auto !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+}
+
+/* Show full URLs for links */
+a[href]:after {
+    content: " (" attr(href) ")";
+    font-size: 90%;
+}
+
+/* Exception for LinkedIn icon */
+a[href^="https://www.linkedin.com"]:after {
+    content: " (LinkedIn Profile)";
+}
+
+/* Adjust list styling */
+ul.bullets {
+    padding-left: 20px !important;
+}
+
+li {
+    margin-bottom: 5px !important;
+}
+
+/* Set page margins */
+@page {
+    margin: 2cm;
+    size: A4;
+}
+
+/* Ensure footer stays at bottom */
+footer {
+    margin-top: 20px !important;
+    border-top: 2px solid #000;
+}
+
+/* Hide elements not needed in print */
+.profilepic {
+    max-width: 100px !important;
+    height: auto !important;
+}
+
+/* Ensure proper page breaks */
+.position {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 20px !important;
+    padding-bottom: 15px !important;
+    border-bottom: 1px solid #ccc;
+}
+
+.position:last-child {
+    border-bottom: none;
+}
+
+/* Optimize font sizes for print */
+h1 { font-size: 24pt !important; }
+h2 { font-size: 16pt !important; }
+h3 { font-size: 14pt !important; }
+p, li { font-size: 11pt !important; }
+
+/* Remove animations and transitions */
+* {
+    animation: none !important;
+    transition: none !important;
+}
+
+/* Ensure dark mode doesn't affect printing */
+@media print and (prefers-color-scheme: dark) {
+    :root {
+        --primary-color: #000000 !important;
+        --secondary-color: #000000 !important;
+        --text-color: #000000 !important;
+        --background-color: #ffffff !important;
+    }
+}
+
+/* Hide theme toggle button when printing */
+.theme-toggle {
+    display: none !important;
+}
+
+/* Improve professional experience section printing */
+.position {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 20px !important;
+    padding-bottom: 15px !important;
+    border-bottom: 1px solid #ccc;
+}
+
+.position:last-child {
+    border-bottom: none;
+}
+
+/* Ensure company logos print properly */
+.title-and-logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px !important;
+}
+
+/* Adjust spacing for experience items */
+.experience.section {
+    padding-top: 0 !important;
+}
+
+.position h3 {
+    margin-top: 0 !important;
+    margin-bottom: 5px !important;
+}
+
+/* Ensure dates are visible and properly formatted */
+.position p em {
+    color: #666 !important;
+    font-style: italic !important;
+}
+
+/* Adjust list spacing in experience section */
+.position ul.bullets {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+/* Tools section in each position */
+.position p strong {
+    display: block;
+    margin-top: 10px !important;
+    color: #333 !important;
+}
