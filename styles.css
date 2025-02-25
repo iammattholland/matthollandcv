@@ -413,8 +413,11 @@ a:hover {
     }
     
     .profilepic {
-        display: block;
-        max-width: 100px;
+        display: none !important;
+    }
+    
+    .print-button {
+        display: none !important;
     }
 }
 

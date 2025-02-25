@@ -80,7 +80,18 @@ function preparePrint() {
                 printFooter = document.createElement('div');
                 printFooter.id = 'print-footer';
                 printFooter.className = 'print-only';
-                printFooter.innerHTML = 'Printed from <a href="https://matthollandcv.com">matthollandcv.com</a>';
+                
+                // Create a proper anchor element for better browser compatibility
+                const link = document.createElement('a');
+                link.href = 'https://matthollandcv.com';
+                link.textContent = 'matthollandcv.com';
+                link.style.color = '#999';
+                link.style.textDecoration = 'underline';
+                
+                // Set the footer text with the link
+                printFooter.textContent = 'Printed from ';
+                printFooter.appendChild(link);
+                
                 document.body.appendChild(printFooter);
             }
             
