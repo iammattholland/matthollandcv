@@ -596,3 +596,22 @@ a:hover {
     cursor: pointer;
     z-index: 1;
 }
+
+/* Print watermark styling */
+.print-only-text {
+  display: none; /* Hide by default */
+}
+
+@media print {
+  .print-only-text {
+    display: block; /* Show only when printing */
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-size: 10px;
+    color: #999;
+    margin: 0;
+    padding: 0;
+    opacity: 0.7;
+  }
+}

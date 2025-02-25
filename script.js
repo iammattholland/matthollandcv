@@ -81,14 +81,18 @@ function addAntiScrapingProtection() {
 function preparePrint() {
     try {
         let printPreparationComplete = false;
+        let manualPrintTriggered = false;
         
         // Force all sections to be visible for printing
         window.addEventListener('beforeprint', function(event) {
-            // If we're already prepared, don't do it again
-            if (printPreparationComplete) return;
+            // If we're already prepared or this was triggered by our button, don't do it again
+            if (printPreparationComplete || manualPrintTriggered) {
+                manualPrintTriggered = false;
+                return;
+            }
             
             // In some browsers, we can delay the print dialog
-            if (event.preventDefault) {
+            if (event && event.preventDefault) {
                 event.preventDefault();
             }
             
@@ -145,7 +149,7 @@ function preparePrint() {
                     printPreparationComplete = true;
                     
                     // Now trigger the print dialog if we prevented it
-                    if (event.preventDefault) {
+                    if (event && event.preventDefault) {
                         window.print();
                     }
                 }, 50);
@@ -155,6 +159,7 @@ function preparePrint() {
         // After print, restore the original behavior
         window.addEventListener('afterprint', function() {
             printPreparationComplete = false;
+            manualPrintTriggered = false;
             
             // Re-initialize the intersection observers for sections that weren't visible
             const sections = document.querySelectorAll(".section:not(.visible)");
@@ -169,6 +174,13 @@ function preparePrint() {
             
             sections.forEach(section => observer.observe(section));
         });
+        
+        // Expose a function to set the manual print flag
+        return {
+            setManualPrintTriggered: function() {
+                manualPrintTriggered = true;
+            }
+        };
     } catch (error) {
         // Limit error details in production
         if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
@@ -176,6 +188,7 @@ function preparePrint() {
         } else {
             console.error('Error preparing for print');
         }
+        return { setManualPrintTriggered: function() {} }; // Return dummy function if error
     }
 }
 
@@ -457,7 +470,7 @@ function cleanup() {
 }
 
 // Add print button to the page with improved security
-function addPrintButton() {
+function addPrintButton(printController) {
     try {
         const printButton = document.createElement('button');
         printButton.className = 'print-button';
@@ -473,6 +486,11 @@ function addPrintButton() {
         
         // Add click event to trigger print with manual preparation
         printButton.addEventListener('click', function() {
+            // Set the flag to prevent duplicate print dialogs
+            if (printController) {
+                printController.setManualPrintTriggered();
+            }
+            
             // Create loading indicator with safe DOM methods
             const loadingIndicator = document.createElement('div');
             Object.assign(loadingIndicator.style, {
@@ -601,8 +619,8 @@ function initializeAll() {
         // Add anti-scraping protection
         addAntiScrapingProtection();
         
-        // Add print preparation
-        preparePrint();
+        // Add print preparation and store the returned controller
+        const printController = preparePrint();
         
         // Initialize draggable car
         initDraggableCar();
@@ -613,8 +631,8 @@ function initializeAll() {
         // Preload car headlights image
         new Image().src = "CarHeadlights.webp";
         
-        // Add print button
-        addPrintButton();
+        // Add print button with access to the print controller
+        addPrintButton(printController);
     } catch (error) {
         // Limit error details in production
         if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
@@ -632,19 +650,3 @@ document.addEventListener("DOMContentLoaded", initializeAll);
 window.addEventListener("scroll", eventListeners.scroll, { passive: true });
 window.addEventListener('unload', cleanup);
 
-document.addEventListener("DOMContentLoaded", function() {
-    let footer = document.querySelector("footer");
-    if (footer) {
-        let link = document.createElement("a");
-        link.href = "https://matthollandcv.com";
-        link.textContent = "matthollandcv.com";
-        link.style.color = "#666"; // Optional styling
-        link.style.textDecoration = "none";
-
-        let text = document.createTextNode("Printed from ");
-        let container = document.createElement("p");
-        container.appendChild(text);
-        container.appendChild(link);
-        footer.appendChild(container);
-    }
-});
