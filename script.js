@@ -294,8 +294,32 @@ function cleanup() {
     window.removeEventListener("scroll", handleScroll);
 }
 
-// Initialize on DOM load
-document.addEventListener("DOMContentLoaded", function() {
+// Add print button to the page
+function addPrintButton() {
+    const printButton = document.createElement('button');
+    printButton.className = 'print-button';
+    printButton.setAttribute('aria-label', 'Print CV');
+    printButton.setAttribute('title', 'Print CV');
+    
+    // Create printer icon SVG
+    printButton.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M19 8h-2V5H7v3H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zM8 5h8v3H8V5zm8 14H8v-7h8v7zm2-4v-2h2v2h-2zm-1-9H7V7h10v-1z"/>
+        </svg>
+    `;
+    
+    // Add click event to trigger print
+    printButton.addEventListener('click', function() {
+        // Trigger the print dialog
+        window.print();
+    });
+    
+    // Add button to the body
+    document.body.appendChild(printButton);
+}
+
+// Initialize all functionality
+function initializeAll() {
     try {
         // Initialize theme
         initTheme();
@@ -337,10 +361,16 @@ document.addEventListener("DOMContentLoaded", function() {
         
         // Preload car headlights image
         new Image().src = "CarHeadlights.webp";
+        
+        // Add print button
+        addPrintButton();
     } catch (error) {
         console.error('Error initializing page:', error);
     }
-});
+}
+
+// Initialize on DOM load
+document.addEventListener("DOMContentLoaded", initializeAll);
 
 // Add event listeners
 window.addEventListener("scroll", handleScroll, { passive: true });

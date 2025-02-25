@@ -439,6 +439,11 @@ a:hover {
         top: 0.5rem;
         right: 0.5rem;
     }
+    
+    .print-button {
+        top: 0.5rem;
+        right: 3.5rem;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -503,5 +508,51 @@ a:hover {
     @page {
         background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj48dGV4dCB4PSIxMCIgeT0iNTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMCIgZmlsbD0iI2YwZjBmMCI+TWF0dCBIb2xsYW5kIENWPC90ZXh0Pjwvc3ZnPg==');
         background-repeat: repeat;
+    }
+}
+
+/* Print button styles */
+.print-button {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    inline-size: 2.5rem;
+    block-size: 2.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    outline-offset: 5px;
+    position: fixed;
+    top: 1rem;
+    right: 4rem; /* Position to the left of theme toggle */
+    z-index: 1001;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.print-button:hover {
+    background-color: var(--hover-bg);
+    transform: scale(1.1);
+}
+
+.print-button svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: var(--text-color);
+    transition: fill 0.3s ease;
+}
+
+.print-button:hover svg {
+    fill: var(--primary-color);
+}
+
+/* Hide print button when printing */
+@media print {
+    .print-button {
+        display: none;
     }
 }
