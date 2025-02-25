@@ -147,33 +147,44 @@ function handleScrollEnd() {
     if (car) car.src = "Car.webp";
 }
 
+// Update car position based on scroll
+function updateCarPosition() {
+    try {
+        const car = document.querySelector(".car");
+        if (!car) return;
+        
+        const scrollTop = window.scrollY;
+        const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercentage = scrollTop / documentHeight;
+        
+        const carStartPosition = 10;
+        const carEndPosition = 90;
+        const carCurrentPosition = carStartPosition + (carEndPosition - carStartPosition) * scrollPercentage;
+        
+        car.style.transform = `translate3d(0, ${carCurrentPosition}vh, 0)`;
+        
+        // Change to headlights version during scroll
+        const carImg = car.querySelector("img");
+        if (carImg) {
+            if (isScrolling) {
+                carImg.src = "CarHeadlights.webp";
+            } else {
+                carImg.src = "Car.webp";
+            }
+        }
+    } catch (error) {
+        console.error('Error updating car position:', error);
+    }
+}
+
 // Handle scroll with improved performance
 const handleScroll = throttle(() => {
     isScrolling = true;
     
     if (!ticking) {
         window.requestAnimationFrame(() => {
-            try {
-                const car = document.querySelector(".car img");
-                if (!car) return;
-                
-                // Change to headlights version during scroll
-                car.src = "CarHeadlights.webp";
-                
-                const scrollTop = window.scrollY;
-                const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const scrollPercentage = scrollTop / documentHeight;
-                
-                const carStartPosition = 10;
-                const carEndPosition = 90;
-                const carCurrentPosition = carStartPosition + (carEndPosition - carStartPosition) * scrollPercentage;
-                
-                car.parentElement.style.transform = `translate3d(0, ${carCurrentPosition}vh, 0)`;
-                
-                ticking = false;
-            } catch (error) {
-                ticking = false;
-            }
+            updateCarPosition();
+            ticking = false;
         });
         
         ticking = true;
@@ -182,6 +193,100 @@ const handleScroll = throttle(() => {
     clearTimeout(window.scrollEndTimer);
     window.scrollEndTimer = setTimeout(handleScrollEnd, 50);
 }, 20);
+
+// Make car draggable for scrolling
+function initDraggableCar() {
+    const car = document.querySelector('.car');
+    if (!car) return;
+    
+    let isDragging = false;
+    let startY = 0;
+    let startScrollY = 0;
+    let lastScrollTop = 0;
+    
+    // Calculate how much to scroll based on car drag
+    function calculateScroll(currentY) {
+        const deltaY = currentY - startY;
+        const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollFactor = 2; // Adjust this to control scroll speed
+        
+        // Calculate new scroll position
+        const newScrollY = startScrollY + (deltaY * scrollFactor);
+        
+        // Clamp scroll position between 0 and document height
+        return Math.max(0, Math.min(documentHeight, newScrollY));
+    }
+    
+    // Handle mouse/touch down
+    function handleDragStart(e) {
+        isDragging = true;
+        car.classList.add('dragging');
+        
+        // Get starting position
+        startY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+        startScrollY = window.scrollY;
+        
+        // Change car image to headlights version
+        const carImg = car.querySelector('img');
+        if (carImg) carImg.src = "CarHeadlights.webp";
+        
+        // Prevent default behavior
+        e.preventDefault();
+    }
+    
+    // Handle mouse/touch move
+    function handleDragMove(e) {
+        if (!isDragging) return;
+        
+        // Get current position
+        const currentY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+        
+        // Calculate and set new scroll position
+        const newScrollY = calculateScroll(currentY);
+        window.scrollTo({
+            top: newScrollY,
+            behavior: 'auto' // Use 'auto' for immediate response
+        });
+        
+        // Update car position manually to avoid lag
+        updateCarPosition();
+        
+        // Determine scroll direction for headlights
+        isScrolling = true;
+        
+        // Prevent default behavior
+        e.preventDefault();
+    }
+    
+    // Handle mouse/touch up
+    function handleDragEnd(e) {
+        if (!isDragging) return;
+        
+        isDragging = false;
+        car.classList.remove('dragging');
+        
+        // Change car image back to normal version
+        setTimeout(() => {
+            const carImg = car.querySelector('img');
+            if (carImg) carImg.src = "Car.webp";
+            isScrolling = false;
+        }, 100);
+        
+        // Prevent default behavior
+        e.preventDefault();
+    }
+    
+    // Add event listeners for mouse
+    car.addEventListener('mousedown', handleDragStart);
+    window.addEventListener('mousemove', handleDragMove);
+    window.addEventListener('mouseup', handleDragEnd);
+    
+    // Add event listeners for touch
+    car.addEventListener('touchstart', handleDragStart, { passive: false });
+    window.addEventListener('touchmove', handleDragMove, { passive: false });
+    window.addEventListener('touchend', handleDragEnd);
+    window.addEventListener('touchcancel', handleDragEnd);
+}
 
 // Cleanup function
 function cleanup() {
@@ -223,6 +328,12 @@ document.addEventListener("DOMContentLoaded", function() {
         
         // Add print preparation
         preparePrint();
+        
+        // Initialize draggable car
+        initDraggableCar();
+        
+        // Update car position initially
+        updateCarPosition();
         
         // Preload car headlights image
         new Image().src = "CarHeadlights.webp";

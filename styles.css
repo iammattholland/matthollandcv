@@ -191,13 +191,14 @@ a:hover {
     clip-path: polygon(0% 0%, 100% 0%, 70% 100%, 30% 100%);
     width: 8px;
     transform-origin: top center;
+    animation: fadeIn 2s ease-in-out, roadPerspective 8s ease-in-out infinite;
 }
 
 .road-line {
     left: 5%;
     top: 0;
     height: 100%;
-    /* Create animated dashed line pattern with gradient */
+    /* Create dashed line pattern with gradient */
     background-image: repeating-linear-gradient(
         to bottom,
         var(--primary-color), 
@@ -211,18 +212,11 @@ a:hover {
     visibility: visible;
     display: block !important;
     position: fixed !important;
-    /* Add animation for moving dashed line */
-    animation: fadeIn 2s ease-in-out, roadLineMove 15s linear infinite;
     /* Use clip-path to create tapering effect */
     clip-path: polygon(0% 0%, 100% 0%, 70% 100%, 30% 100%);
     width: 3px;
     transform-origin: top center;
-}
-
-/* Add new animation for moving road line */
-@keyframes roadLineMove {
-    0% { background-position: 0 0; }
-    100% { background-position: 0 50px; }
+    animation: fadeIn 2s ease-in-out, roadPerspective 8s ease-in-out infinite;
 }
 
 /* Add perspective animation to road and road-line */
@@ -241,14 +235,6 @@ a:hover {
     }
 }
 
-.road, .road-line {
-    animation: fadeIn 2s ease-in-out, roadPerspective 8s ease-in-out infinite;
-}
-
-.road-line {
-    animation: fadeIn 2s ease-in-out, roadLineMove 15s linear infinite, roadPerspective 8s ease-in-out infinite;
-}
-
 .car {
     left: 5.1%;
     top: 5%; 
@@ -257,6 +243,12 @@ a:hover {
     transform: translateY(0);
     transition: transform 0.1s ease-out;
     background-color: transparent !important;
+    cursor: grab; /* Add grab cursor to indicate draggable */
+}
+
+.car.dragging {
+    cursor: grabbing; /* Change cursor when actively dragging */
+    transition: none; /* Remove transition during drag for responsiveness */
 }
 
 .car img {
@@ -267,12 +259,24 @@ a:hover {
     /* Add subtle hover effect */
     filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3));
     transition: filter 0.3s ease, transform 0.3s ease;
+    pointer-events: none; /* Ensure drag events go to parent */
 }
 
 /* Add hover effect to car */
 .car:hover img {
     filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
     transform: scale(1.05);
+}
+
+/* Add pulsing effect to car when page loads to indicate it's interactive */
+@keyframes carPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.car img {
+    animation: fadeIn 2s ease-in-out, carPulse 2s ease-in-out 2s;
 }
 
 /* Theme toggle */
