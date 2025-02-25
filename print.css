@@ -31,6 +31,11 @@ body, .section, header, footer {
     display: none !important;
 }
 
+/* Hide profile photo on print */
+.profilepic {
+    display: none !important;
+}
+
 /* Adjust header for print */
 header {
     border-bottom: 1px solid #000;
@@ -89,12 +94,23 @@ h1, h2, h3, p, li {
     page-break-before: avoid !important;
 }
 
-/* Ensure company logos print well */
+/* Fix company logos for print */
 .company-logo {
     max-width: 50px !important;
     height: auto !important;
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
+}
+
+/* Force all images with data-src to show their actual image */
+img[data-src] {
+    content: attr(data-src) !important;
+    visibility: visible !important;
+}
+
+/* Fix for lazy-loaded images in print */
+.company-logo[src^="data:image/svg+xml"] {
+    content: url(attr(data-src));
 }
 
 /* Position styling */
@@ -184,12 +200,6 @@ footer::after {
     margin-top: 5px;
 }
 
-/* Hide profile pic on print to save space */
-.profilepic {
-    max-width: 80px !important;
-    height: auto !important;
-}
-
 /* Remove animations and transitions */
 * {
     animation: none !important;
@@ -227,6 +237,16 @@ footer::after {
     
     @page {
         background: none !important;
+    }
+    
+    /* Force all lazy-loaded images to display */
+    img[data-src] {
+        visibility: visible !important;
+    }
+    
+    /* Replace placeholder SVGs with actual images */
+    img[src^="data:image/svg+xml"][data-src] {
+        content: attr(data-src);
     }
 }
 
