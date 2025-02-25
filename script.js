@@ -49,15 +49,44 @@ function preparePrint() {
             // Make all sections visible regardless of scroll position
             document.querySelectorAll('.section').forEach(section => {
                 section.classList.add('visible');
+            });
+            
+            // Force load all lazy-loaded images, especially company logos
+            const lazyImages = document.querySelectorAll('img[data-src]');
+            const imagePromises = [];
+            
+            lazyImages.forEach(img => {
+                if (img.dataset.src && (img.src.startsWith('data:') || !img.classList.contains('image-loaded'))) {
+                    // Create a promise for each image load
+                    const promise = new Promise((resolve) => {
+                        const newImg = new Image();
+                        newImg.onload = () => {
+                            img.src = img.dataset.src;
+                            img.classList.add('image-loaded');
+                            resolve();
+                        };
+                        newImg.onerror = () => {
+                            console.warn(`Failed to load image: ${img.dataset.src}`);
+                            resolve();
+                        };
+                        newImg.src = img.dataset.src;
+                    });
+                    imagePromises.push(promise);
+                }
+            });
+            
+            // Wait for all images to load or timeout after 1 second
+            Promise.race([
+                Promise.all(imagePromises),
+                new Promise(resolve => setTimeout(resolve, 1000))
+            ]).then(() => {
+                // Force browser to recognize the changes
+                document.body.style.display = 'none';
+                setTimeout(() => {
+                    document.body.style.display = '';
+                }, 0);
                 
-                // Force load any lazy-loaded images
-                const lazyImages = section.querySelectorAll('img[data-src]');
-                lazyImages.forEach(img => {
-                    if (img.dataset.src) {
-                        img.src = img.dataset.src;
-                        img.removeAttribute('data-src');
-                    }
-                });
+                console.log('Print preparation complete');
             });
         });
         
