@@ -154,9 +154,12 @@ a[href]:after {
 
 /* Ensure footer stays at bottom */
 footer {
+    position: static !important;
     margin-top: 15px !important;
     border-top: 1px solid #000;
     padding-top: 10px !important;
+    page-break-before: avoid !important;
+    page-break-inside: avoid !important;
 }
 
 /* Hide profile pic on print to save space */
@@ -173,11 +176,26 @@ footer {
 
 /* Ensure dark mode doesn't affect printing */
 @media print {
-    :root {
+    /* Force light mode for printing */
+    :root, [data-theme="dark"] {
         --primary-color: #000000 !important;
         --secondary-color: #000000 !important;
         --text-color: #000000 !important;
         --background-color: #ffffff !important;
+    }
+    
+    /* Override dark mode text colors */
+    [data-theme="dark"] p,
+    [data-theme="dark"] li,
+    [data-theme="dark"] h1,
+    [data-theme="dark"] h2,
+    [data-theme="dark"] h3 {
+        color: #000000 !important;
+    }
+    
+    /* Override dark mode link colors */
+    [data-theme="dark"] a {
+        color: #000000 !important;
     }
     
     /* Remove watermark */
@@ -215,4 +233,9 @@ footer {
 /* Remove LinkedIn URL display */
 a[href^="https://www.linkedin.com"]:after {
     content: none !important;
+}
+
+/* Prevent page breaks before footer */
+.awards.section {
+    page-break-after: avoid !important;
 }
