@@ -74,6 +74,22 @@ function preparePrint() {
                 }
             });
             
+            // Add print watermark with link
+            let printWatermark = document.getElementById('print-watermark');
+            if (!printWatermark) {
+                printWatermark = document.createElement('div');
+                printWatermark.id = 'print-watermark';
+                printWatermark.style.position = 'fixed';
+                printWatermark.style.bottom = '5mm';
+                printWatermark.style.left = '5mm';
+                printWatermark.style.fontSize = '8pt';
+                printWatermark.style.color = '#999';
+                printWatermark.style.zIndex = '9999';
+                printWatermark.innerHTML = 'Printed from <a href="https://matthollandcv.com" style="color:#999;text-decoration:underline;">matthollandcv.com</a>';
+                printWatermark.className = 'print-only';
+                document.body.appendChild(printWatermark);
+            }
+            
             // Wait for all images to load or timeout after 1 second
             Promise.race([
                 Promise.all(imagePromises),
@@ -83,6 +99,15 @@ function preparePrint() {
                 document.body.style.display = 'none';
                 setTimeout(() => document.body.style.display = '', 0);
             });
+        });
+        
+        // Clean up after printing
+        window.addEventListener('afterprint', function() {
+            // Remove print watermark
+            const printWatermark = document.getElementById('print-watermark');
+            if (printWatermark) {
+                document.body.removeChild(printWatermark);
+            }
         });
     } catch (error) {
         console.error('Error in print preparation:', error);

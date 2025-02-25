@@ -509,6 +509,26 @@ a:hover {
         background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj48dGV4dCB4PSIxMCIgeT0iNTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMCIgZmlsbD0iI2YwZjBmMCI+TWF0dCBIb2xsYW5kIENWPC90ZXh0Pjwvc3ZnPg==');
         background-repeat: repeat;
     }
+    
+    /* Add footer with link to website */
+    body::before {
+        content: "Printed from matthollandcv.com";
+        position: fixed;
+        bottom: 5mm;
+        left: 5mm;
+        font-size: 8pt;
+        color: #999;
+    }
+    
+    /* Create a hidden link that will be visible in the printed document */
+    body::after {
+        content: "";
+    }
+    
+    /* Hide elements that shouldn't be printed */
+    .theme-toggle, .print-button, .car, .road, .road-line {
+        display: none !important;
+    }
 }
 
 /* Print button styles */
@@ -554,5 +574,37 @@ a:hover {
 @media print {
     .print-button {
         display: none;
+    }
+}
+
+/* Print-only elements */
+.print-only {
+    display: none;
+}
+
+@media print {
+    .print-only {
+        display: block;
+    }
+    
+    body::after {
+        content: "Matt Holland CV - Original Document";
+        position: fixed;
+        bottom: 5mm;
+        right: 5mm;
+        opacity: 0.5;
+        font-size: 8pt;
+        color: #999;
+    }
+    
+    /* Add background watermark */
+    @page {
+        background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj48dGV4dCB4PSIxMCIgeT0iNTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMCIgZmlsbD0iI2YwZjBmMCI+TWF0dCBIb2xsYW5kIENWPC90ZXh0Pjwvc3ZnPg==');
+        background-repeat: repeat;
+    }
+    
+    /* Hide elements that shouldn't be printed */
+    .theme-toggle, .print-button, .car, .road, .road-line {
+        display: none !important;
     }
 }
