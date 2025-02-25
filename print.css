@@ -152,11 +152,6 @@ a[href]:after {
     color: #666;
 }
 
-/* Exception for LinkedIn icon */
-a[href^="https://www.linkedin.com"]:after {
-    content: " (LinkedIn Profile @ iammattholland)";
-}
-
 /* Ensure footer stays at bottom */
 footer {
     margin-top: 15px !important;
@@ -185,15 +180,13 @@ footer {
         --background-color: #ffffff !important;
     }
     
-    /* Add subtle watermark */
+    /* Remove watermark */
     body::after {
-        content: "Matt Holland CV - Original Document";
-        position: fixed;
-        bottom: 5mm;
-        right: 5mm;
-        opacity: 0.5;
-        font-size: 8pt;
-        color: #999;
+        content: none !important;
+    }
+    
+    @page {
+        background: none !important;
     }
 }
 
@@ -212,4 +205,14 @@ footer {
         columns: 2;
         column-gap: 20px;
     }
+}
+
+/* Hide LinkedIn contact in print version */
+.profile-content a[href^="https://www.linkedin.com"] {
+    display: none !important;
+}
+
+/* Remove LinkedIn URL display */
+a[href^="https://www.linkedin.com"]:after {
+    content: none !important;
 }
