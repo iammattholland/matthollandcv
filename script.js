@@ -57,43 +57,74 @@ function preparePrint() {
     try {
         // Force all sections to be visible for printing
         window.addEventListener('beforeprint', function() {
+            console.log("Preparing for print...");
+            
             // Make all sections visible
             document.querySelectorAll('.section').forEach(section => {
                 section.classList.add('visible');
             });
             
-            // Force load all lazy-loaded images
+            // Force load ALL lazy-loaded images, especially company logos
             const lazyImages = document.querySelectorAll('img[data-src]');
             const imagePromises = [];
             
             lazyImages.forEach(img => {
-                if (img.dataset.src && img.src.startsWith('data:')) {
+                if (img.dataset.src) {
+                    // Create a promise for each image load
                     const promise = new Promise((resolve) => {
+                        // Create a new image to preload
                         const newImg = new Image();
+                        
                         newImg.onload = () => {
+                            // Replace the placeholder with the actual image
                             img.src = img.dataset.src;
                             img.classList.add('image-loaded');
+                            img.classList.remove('image-loading');
                             resolve();
                         };
+                        
                         newImg.onerror = () => {
-                            console.warn(`Failed to load image: ${img.dataset.src}`);
+                            console.warn(`Failed to load image for printing: ${img.dataset.src}`);
+                            // Still resolve to not block printing
                             resolve();
                         };
+                        
+                        // Start loading the image
                         newImg.src = img.dataset.src;
                     });
+                    
                     imagePromises.push(promise);
                 }
             });
             
-            // Wait for all images to load or timeout after 1 second
+            // Wait for all images to load or timeout after 2 seconds (increased from 1 second)
             Promise.race([
                 Promise.all(imagePromises),
-                new Promise(resolve => setTimeout(resolve, 1000))
+                new Promise(resolve => setTimeout(resolve, 2000))
             ]).then(() => {
+                console.log("Print preparation complete");
                 // Force browser to recognize the changes
                 document.body.style.display = 'none';
-                setTimeout(() => document.body.style.display = '', 0);
+                setTimeout(() => document.body.style.display = '', 10);
             });
+        });
+        
+        // After print, restore the original behavior
+        window.addEventListener('afterprint', function() {
+            console.log("Print completed");
+            
+            // Re-initialize the intersection observers for sections that weren't visible
+            const sections = document.querySelectorAll(".section:not(.visible)");
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => observer.observe(section));
         });
     } catch (error) {
         console.error('Error in print preparation:', error);
@@ -319,10 +350,70 @@ function addPrintButton() {
         </svg>
     `;
     
-    // Add click event to trigger print
+    // Add click event to trigger print with manual preparation
     printButton.addEventListener('click', function() {
-        // Trigger the print dialog
-        window.print();
+        // Show loading indicator
+        const loadingIndicator = document.createElement('div');
+        loadingIndicator.style.position = 'fixed';
+        loadingIndicator.style.top = '50%';
+        loadingIndicator.style.left = '50%';
+        loadingIndicator.style.transform = 'translate(-50%, -50%)';
+        loadingIndicator.style.background = 'rgba(255, 255, 255, 0.9)';
+        loadingIndicator.style.padding = '20px';
+        loadingIndicator.style.borderRadius = '5px';
+        loadingIndicator.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.2)';
+        loadingIndicator.style.zIndex = '9999';
+        loadingIndicator.textContent = 'Preparing CV for printing...';
+        document.body.appendChild(loadingIndicator);
+        
+        // Make all sections visible
+        document.querySelectorAll('.section').forEach(section => {
+            section.classList.add('visible');
+        });
+        
+        // Force load all lazy-loaded images
+        const lazyImages = document.querySelectorAll('img[data-src]');
+        const imagePromises = [];
+        
+        lazyImages.forEach(img => {
+            if (img.dataset.src) {
+                const promise = new Promise((resolve) => {
+                    const newImg = new Image();
+                    newImg.onload = () => {
+                        img.src = img.dataset.src;
+                        img.classList.add('image-loaded');
+                        img.classList.remove('image-loading');
+                        resolve();
+                    };
+                    newImg.onerror = () => {
+                        console.warn(`Failed to load image: ${img.dataset.src}`);
+                        resolve();
+                    };
+                    newImg.src = img.dataset.src;
+                });
+                imagePromises.push(promise);
+            }
+        });
+        
+        // Wait for all images to load or timeout after 2 seconds
+        Promise.race([
+            Promise.all(imagePromises),
+            new Promise(resolve => setTimeout(resolve, 2000))
+        ]).then(() => {
+            // Remove loading indicator
+            document.body.removeChild(loadingIndicator);
+            
+            // Force browser to recognize the changes
+            document.body.style.display = 'none';
+            setTimeout(() => {
+                document.body.style.display = '';
+                
+                // Trigger the print dialog after a short delay
+                setTimeout(() => {
+                    window.print();
+                }, 100);
+            }, 50);
+        });
     });
     
     // Add button to the body
