@@ -74,20 +74,14 @@ function preparePrint() {
                 }
             });
             
-            // Add print watermark with link
-            let printWatermark = document.getElementById('print-watermark');
-            if (!printWatermark) {
-                printWatermark = document.createElement('div');
-                printWatermark.id = 'print-watermark';
-                printWatermark.style.position = 'fixed';
-                printWatermark.style.bottom = '5mm';
-                printWatermark.style.left = '5mm';
-                printWatermark.style.fontSize = '8pt';
-                printWatermark.style.color = '#999';
-                printWatermark.style.zIndex = '9999';
-                printWatermark.innerHTML = 'Printed from <a href="https://matthollandcv.com" style="color:#999;text-decoration:underline;">matthollandcv.com</a>';
-                printWatermark.className = 'print-only';
-                document.body.appendChild(printWatermark);
+            // Add print footer with link
+            let printFooter = document.getElementById('print-footer');
+            if (!printFooter) {
+                printFooter = document.createElement('div');
+                printFooter.id = 'print-footer';
+                printFooter.className = 'print-only';
+                printFooter.innerHTML = 'Printed from <a href="https://matthollandcv.com">matthollandcv.com</a>';
+                document.body.appendChild(printFooter);
             }
             
             // Wait for all images to load or timeout after 1 second
@@ -103,10 +97,10 @@ function preparePrint() {
         
         // Clean up after printing
         window.addEventListener('afterprint', function() {
-            // Remove print watermark
-            const printWatermark = document.getElementById('print-watermark');
-            if (printWatermark) {
-                document.body.removeChild(printWatermark);
+            // Remove print footer
+            const printFooter = document.getElementById('print-footer');
+            if (printFooter) {
+                document.body.removeChild(printFooter);
             }
         });
     } catch (error) {
