@@ -1,5 +1,5 @@
 :root {
-    /* Light theme colors */
+    /* Theme colors and variables */
     --primary-color: #45612c;
     --secondary-color: #333;
     --text-color: #222222;
@@ -9,14 +9,31 @@
     --icon-fill-hover: var(--primary-color);
     --hover-bg: rgba(0, 0, 0, 0.1);
     --gradient: linear-gradient(to right, var(--secondary-color), var(--primary-color));
-    /* Add missing transition variables */
+    
+    /* Animation variables */
     --ease-elastic-3: cubic-bezier(0.5, 1.25, 0.75, 1.25);
     --ease-elastic-4: cubic-bezier(0.5, 1.5, 0.75, 1.25);
     --ease-3: cubic-bezier(0.25, 0, 0.3, 1);
     --ease-out-5: cubic-bezier(0, 0, 0, 1);
 }
 
-/* Add transitions for smooth theme switching */
+/* Dark theme */
+[data-theme="dark"] {
+    --primary-color: #7da861;
+    --secondary-color: #1a1a1a;
+    --text-color: #ffffff;
+    --background-color: #121212;
+    --shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    --icon-fill: var(--text-color);
+    --icon-fill-hover: var(--primary-color);
+    --hover-bg: rgba(255, 255, 255, 0.1);
+}
+
+/* Base styles */
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Inter', Arial, sans-serif;
     margin: 5px;
@@ -27,26 +44,26 @@ body {
     flex-direction: column;
     align-items: center; 
     transition: background-color 0.3s ease;
-
-    /* Prevent text selection */
     -webkit-user-select: none; 
     -moz-user-select: none; 
     -ms-user-select: none; 
     user-select: none; 
 }
 
-header {
+/* Header and footer */
+header, footer {
     position: relative; 
     text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(to right, #333, #45612c);
+    box-shadow: var(--shadow);
+    background: var(--gradient);
     max-width: 900px;
     width: 100%;
     margin: 20px auto;
     padding: 25px;
     word-wrap: break-word;
     word-break: break-word;
-    white-space: normal; 
+    white-space: normal;
+    color: white;
 }
 
 .header-content {
@@ -66,29 +83,28 @@ header {
     border-radius: 50%; 
 }
 
-header h1, header h2 {
-    z-index: 2;
+/* Typography */
+h1, h2 {
+    color: var(--primary-color);
+}
+
+h3 {
+    color: #292929;
+    font-size: 1.25em;
+}
+
+p, li {
+    color: var(--text-color);
+}
+
+h1 { font-size: 2.5em; }
+h2 { font-size: 1.5em; }
+
+header h1, header h2, footer p {
     color: #ffffff;
 }
 
-footer {
-    color: white;
-    text-align: center;    
-    background: linear-gradient(to right, #333, #45612c);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    max-width: 900px;
-    width: 100%;
-    margin: 20px auto;
-    padding: 25px;
-    word-wrap: break-word; 
-    word-break: break-word; 
-    white-space: normal; 
-}
-
-footer p {
-    color: white;
-}
-
+/* Sections */
 .container {
     margin: auto;
 }
@@ -110,49 +126,25 @@ footer p {
     transform: translateY(0); 
 }
 
-h1 {
-    color: #45612c;
-    font-size: 2.5em;
-}
-
-h2 {
-    color: #45612c;
-    font-size: 1.5em;
-}
-
-h3 {
-    color: #292929;
-    font-size: 1.25em;
-}
-
-p {
-    color: #333;
-}
-
-li {
-    color: #333;
-}
-
 /* Lists */
-
 ul.bullets {
     list-style-type: circle;
     padding-left: 40px;
     margin-bottom: 10px;
-    color: #45612c;
+    color: var(--primary-color);
 }
 
 ul li::marker {
-    color: #45612c;
+    color: var(--primary-color);
 }
 
 li {
     margin-bottom: 10px;
 }
 
-/* Link Colors */
+/* Links */
 a {
-    color: #45612c;
+    color: var(--primary-color);
     text-decoration: none; 
 }
 
@@ -161,19 +153,9 @@ a:hover {
     text-decoration: underline; 
 }
 
-a:active {
-    color: #0c47a1; 
-}
-
-a:visited {
-    color: #551a8b; 
-}
-
 /* Company Logo */
-
 .title-and-logo {
     display: flex;
-    align-items: left;
     justify-content: space-between;
     align-items: flex-end;
 }
@@ -181,49 +163,42 @@ a:visited {
 .company-logo {
     width: 80px; 
     height: 80px;
-    margin-right: 10px; 
-    margin-left: 10px;
+    margin: 0 10px;
 }
 
 /* Car Animation */
+.road, .road-line, .car {
+    position: fixed;
+    animation: fadeIn 2s ease-in-out;
+}
 
 .road {
-    position: fixed;
     left: 10%;
     top: 0;
     width: 4px;
     height: 100%;
-    background-color: #45612c;
-    margin-right: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
-    animation: fadeIn 2s ease-in-out; 
-    border-radius: 50%; 
-
+    background-color: var(--primary-color);
+    box-shadow: var(--shadow);
+    border-radius: 50%;
 }
 
 .road-line {
-    position: fixed;
     left: 5%;
     top: 0;
     width: 0.5px;
     height: 100%;
-    color: #45612c;
     background-image: repeating-linear-gradient(
         to bottom,
-        #45612c, 
-        #45612c 10px, 
+        var(--primary-color), 
+        var(--primary-color) 10px, 
         transparent 10px, 
         transparent 40px 
     );
-    z-index: 1; 
-    margin: 1px;
-    padding: 1px;
-    border-radius: 50%; 
-    animation: fadeIn 2s ease-in-out; 
+    z-index: 1;
+    border-radius: 50%;
 }
 
 .car {
-    position: fixed;
     left: 5.1%;
     top: 5%; 
     width: 5%; 
@@ -238,119 +213,13 @@ a:visited {
     animation: fadeIn 3s ease-in-out;
 }
 
-/* Media Query*/
-@media (max-width: 1200px) {
-    .car, .road, .road-line, .profilepic{
-        display: none;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 1024px) {
-    .header, .footer, .section {
-        padding: 15px;
-        margin: 10px auto; 
-        max-width: 100%;
-        box-sizing: border-box; 
-        display: flex;
-        flex-direction: column;
-    }
-}
-
-@media (max-width: 600px) {
-    .header, .footer, .section {
-        padding: 10px;
-        margin: 5px auto; 
-        max-width: 100%;
-        box-sizing: border-box; 
-        display: flex;
-        flex-direction: column;   
-    }
-}
-
-/* Keyframes for fade-in animation */
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 2;
-    }
-}
-
-* {
-    box-sizing: border-box;
-}
-
-/* Add focus styles */
-:focus {
-    outline: 3px solid var(--primary-color);
-    outline-offset: 2px;
-}
-
-/* Add better loading state styles */
-.image-loading {
-    filter: blur(5px);
-    transition: filter 0.3s;
-}
-
-.image-loaded {
-    filter: none;
-}
-
-/* Improve accessibility */
-@media (prefers-reduced-motion: reduce) {
-    .car, .section {
-        transition: none !important;
-        animation: none !important;
-    }
-    
-    html {
-        scroll-behavior: auto !important;
-    }
-}
-
-/* Better focus styles for keyboard navigation */
-:focus-visible {
-    outline: 3px solid var(--primary-color);
-    outline-offset: 2px;
-    border-radius: 2px;
-}
-
-/* Hide focus outline for mouse users */
-:focus:not(:focus-visible) {
-    outline: none;
-}
-
-/* Improve contrast ratios */
-:root {
-    --primary-color: #45612c;
-    --text-color: #222222;  /* Darker for better contrast */
-}
-
-/* Add loading skeleton styles */
-@keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-}
-
-.loading {
-    background: linear-gradient(90deg, 
-        #f0f0f0 0%, 
-        #f8f8f8 50%, 
-        #f0f0f0 100%
-    );
-    background-size: 200% 100%;
-    animation: shimmer 1.5s infinite;
-}
-
-/* Theme toggle button styles */
+/* Theme toggle */
 .theme-toggle {
     background: none;
     border: none;
     padding: 0.5rem;
     inline-size: 2.5rem;
     block-size: 2.5rem;
-    aspect-ratio: 1;
     border-radius: 50%;
     cursor: pointer;
     touch-action: manipulation;
@@ -403,6 +272,113 @@ a:visited {
     transform: translateX(-7px);
 }
 
+/* Dark mode text overrides */
+[data-theme="dark"] p,
+[data-theme="dark"] li,
+[data-theme="dark"] h3 {
+    color: rgba(255, 255, 255, 0.87) !important;
+}
+
+[data-theme="dark"] h1,
+[data-theme="dark"] h2 {
+    color: var(--primary-color) !important;
+}
+
+[data-theme="dark"] a {
+    color: #9dc183;
+}
+
+[data-theme="dark"] a:hover {
+    color: #b8d4a3;
+}
+
+[data-theme="dark"] .section {
+    background-color: var(--secondary-color);
+}
+
+/* Accessibility */
+:focus {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Loading states */
+.image-loading {
+    filter: blur(5px);
+    transition: filter 0.3s;
+}
+
+.image-loaded {
+    filter: none;
+}
+
+.loading {
+    background: linear-gradient(90deg, 
+        #f0f0f0 0%, 
+        #f8f8f8 50%, 
+        #f0f0f0 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+    .car, .road, .road-line, .profilepic {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px), (max-width: 600px) {
+    .header, .footer, .section {
+        padding: 15px;
+        margin: 10px auto; 
+        max-width: 100%;
+        box-sizing: border-box; 
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 600px) {
+    .header, .footer, .section {
+        padding: 10px;
+        margin: 5px auto;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .car, .section {
+        transition: none !important;
+        animation: none !important;
+    }
+    
+    html {
+        scroll-behavior: auto !important;
+    }
+}
+
 @supports (animation-timeline: view-timeline) {
     @media (prefers-reduced-motion: no-preference) {
         .sun-and-moon > .sun {
@@ -420,7 +396,6 @@ a:visited {
         [data-theme="dark"] .sun-and-moon > .sun {
             transition-timing-function: var(--ease-3);
             transition-duration: .25s;
-            transform: scale(1.75);
         }
 
         [data-theme="dark"] .sun-and-moon > .sun-beams {
@@ -430,56 +405,30 @@ a:visited {
     }
 }
 
-/* Update dark theme styles */
-[data-theme="dark"] {
-    --primary-color: #7da861;
-    --secondary-color: #1a1a1a;
-    --text-color: #ffffff;
-    --background-color: #121212;
-    --shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    --icon-fill: var(--text-color);
-    --icon-fill-hover: var(--primary-color);
-    --hover-bg: rgba(255, 255, 255, 0.1);
+/* Anti-scraping CSS */
+.experience .position {
+    user-select: none;
 }
 
-/* Add text color overrides for dark mode */
-[data-theme="dark"] p,
-[data-theme="dark"] li,
-[data-theme="dark"] h3 {
-    color: rgba(255, 255, 255, 0.87) !important; /* Slightly dimmed white for better readability */
+.experience .position:hover {
+    user-select: text;
 }
 
-[data-theme="dark"] h1,
-[data-theme="dark"] h2 {
-    color: var(--primary-color) !important; /* Keep headings in theme color */
-}
-
-[data-theme="dark"] a {
-    color: #9dc183; /* Lighter version of primary color for links */
-}
-
-[data-theme="dark"] a:hover {
-    color: #b8d4a3;
-}
-
-[data-theme="dark"] ul.bullets {
-    color: var(--primary-color);
-}
-
-[data-theme="dark"] ul li::marker {
-    color: var(--primary-color);
-}
-
-[data-theme="dark"] body {
-    background-color: var(--background-color);
-}
-
-[data-theme="dark"] .section {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-}
-
-[data-theme="dark"] header,
-[data-theme="dark"] footer {
-    background: var(--gradient);
+/* Add subtle text watermark to printed pages */
+@media print {
+    body::after {
+        content: "Matt Holland CV - Original Document";
+        position: fixed;
+        bottom: 5mm;
+        right: 5mm;
+        opacity: 0.5;
+        font-size: 8pt;
+        color: #999;
+    }
+    
+    /* Add background watermark */
+    @page {
+        background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj48dGV4dCB4PSIxMCIgeT0iNTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMCIgZmlsbD0iI2YwZjBmMCI+TWF0dCBIb2xsYW5kIENWPC90ZXh0Pjwvc3ZnPg==');
+        background-repeat: repeat;
+    }
 }

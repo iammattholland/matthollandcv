@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+Disallow: /assets/
+Disallow: /*?*
+
+# Allow Google to index everything
+User-agent: Googlebot
+Allow: /
+
+# Block specific scrapers
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: / 
