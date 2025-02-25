@@ -631,3 +631,20 @@ document.addEventListener("DOMContentLoaded", initializeAll);
 // Add event listeners
 window.addEventListener("scroll", eventListeners.scroll, { passive: true });
 window.addEventListener('unload', cleanup);
+
+document.addEventListener("DOMContentLoaded", function() {
+    let footer = document.querySelector("footer");
+    if (footer) {
+        let link = document.createElement("a");
+        link.href = "https://matthollandcv.com";
+        link.textContent = "matthollandcv.com";
+        link.style.color = "#666"; // Optional styling
+        link.style.textDecoration = "none";
+
+        let text = document.createTextNode("Printed from ");
+        let container = document.createElement("p");
+        container.appendChild(text);
+        container.appendChild(link);
+        footer.appendChild(container);
+    }
+});
