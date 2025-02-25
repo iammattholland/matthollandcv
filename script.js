@@ -20,20 +20,31 @@ function handleImageError(img) {
 // Anti-scraping measures
 function addAntiScrapingProtection() {
     try {
-        // Prevent right-click
-        document.addEventListener('contextmenu', event => event.preventDefault());
+        // Prevent right-click except for search engine crawlers
+        document.addEventListener('contextmenu', event => {
+            // Allow legitimate crawlers
+            const userAgent = navigator.userAgent.toLowerCase();
+            const isCrawler = /googlebot|bingbot|yandexbot|slurp|duckduckbot/i.test(userAgent);
+            
+            if (!isCrawler) {
+                event.preventDefault();
+            }
+        });
         
         // Add content protection for large selections
         document.addEventListener('copy', (e) => {
             const selection = window.getSelection();
             if (selection.toString().length > 100) {
-                e.clipboardData.setData('text/plain', 'Content from Matt Holland\'s CV. Please visit the original site.');
+                // Add attribution but don't completely block copying
+                const originalText = selection.toString();
+                const attributedText = originalText + '\n\nSource: Matt Holland\'s CV - https://matthollandcv.com';
+                e.clipboardData.setData('text/plain', attributedText);
                 e.preventDefault();
             }
         });
         
-        // Detect and block headless browsers
-        if (navigator.webdriver || /HeadlessChrome/.test(navigator.userAgent)) {
+        // Detect and block only suspicious headless browsers, not legitimate crawlers
+        if (navigator.webdriver && !/googlebot|bingbot|yandexbot|slurp|duckduckbot/i.test(navigator.userAgent.toLowerCase())) {
             document.body.innerHTML = '<h1>This content is not available in automated browsers</h1>';
         }
     } catch (error) {
