@@ -104,13 +104,27 @@ h1, h2, h3, p, li {
 
 /* Force all images with data-src to show their actual image */
 img[data-src] {
-    content: attr(data-src) !important;
     visibility: visible !important;
 }
 
 /* Fix for lazy-loaded images in print */
-.company-logo[src^="data:image/svg+xml"] {
-    content: url(attr(data-src));
+@media print {
+    /* Force logos to load their actual images */
+    .company-logo[src^="data:image/svg+xml"] {
+        visibility: visible !important;
+    }
+    
+    /* Ensure all company logos are visible */
+    .title-and-logo img {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+}
+
+/* JavaScript print helper - add to head */
+head::before {
+    content: "var printHelper = function() { document.querySelectorAll('.company-logo[data-src]').forEach(function(img) { if(img.src.startsWith('data:')) { img.src = img.dataset.src; } }); }; window.addEventListener('beforeprint', printHelper);";
+    display: none;
 }
 
 /* Position styling */
