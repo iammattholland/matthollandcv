@@ -168,35 +168,35 @@ a:hover {
 }
 
 /* Car Animation */
-.road, .road-line, .car {
+.road, .road-line {
     position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
     animation: fadeIn 2s ease-in-out;
     will-change: transform;
+    z-index: 1;
 }
 
 .road {
     left: 10%;
-    top: 0;
-    height: 100vh; /* Use viewport height instead of percentage */
+    right: auto;
     background-color: var(--primary-color);
     box-shadow: var(--shadow);
     border-radius: 2px;
-    /* Remove gradient, use solid theme color */
     background-image: none;
-    /* Use clip-path to create tapering effect */
-    clip-path: polygon(0% 0%, 100% 0%, 70% 100%, 30% 100%);
     width: 8px;
-    transform-origin: top center;
+    transform-origin: center;
     animation: fadeIn 2s ease-in-out, roadPerspective 8s ease-in-out infinite;
-    transform: translateY(0); /* Ensure no vertical movement */
-    bottom: 0; /* Anchor to bottom as well */
 }
 
 .road-line {
     left: 5%;
-    top: 0;
-    height: 100vh; /* Use viewport height instead of percentage */
-    /* Create dashed line pattern with gradient */
+    right: auto;
     background-image: repeating-linear-gradient(
         to bottom,
         var(--primary-color), 
@@ -204,38 +204,30 @@ a:hover {
         transparent 10px, 
         transparent 40px 
     );
-    z-index: 1;
     border-radius: 0;
-    opacity: 1;
-    visibility: visible;
-    display: block !important;
-    position: fixed !important;
-    /* Use clip-path to create tapering effect */
-    clip-path: polygon(0% 0%, 100% 0%, 70% 100%, 30% 100%);
     width: 3px;
-    transform-origin: top center;
+    transform-origin: center;
     animation: fadeIn 2s ease-in-out, roadPerspective 8s ease-in-out infinite;
-    transform: translateY(0); /* Ensure no vertical movement */
-    bottom: 0; /* Anchor to bottom as well */
 }
 
-/* Add perspective animation to road and road-line */
+/* Revised perspective animation */
 @keyframes roadPerspective {
     0% { 
         clip-path: polygon(0% 0%, 100% 0%, 70% 100%, 30% 100%);
-        transform: scaleY(1) translateY(0); /* Keep vertical position fixed */
+        transform: scaleY(1);
     }
     50% { 
         clip-path: polygon(10% 0%, 90% 0%, 65% 100%, 35% 100%);
-        transform: scaleY(0.98) translateY(0); /* Keep vertical position fixed */
+        transform: scaleY(0.98);
     }
     100% { 
         clip-path: polygon(0% 0%, 100% 0%, 70% 100%, 30% 100%);
-        transform: scaleY(1) translateY(0); /* Keep vertical position fixed */
+        transform: scaleY(1);
     }
 }
 
 .car {
+    position: fixed;
     left: 5.1%;
     top: 5%; 
     width: 5%; 
@@ -243,7 +235,8 @@ a:hover {
     transform: translateY(0);
     transition: transform 0.1s ease-out;
     background-color: transparent !important;
-    cursor: grab; /* Add grab cursor to indicate draggable */
+    cursor: grab;
+    animation: fadeIn 2s ease-in-out;
 }
 
 .car.dragging {
