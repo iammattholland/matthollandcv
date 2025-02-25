@@ -519,17 +519,6 @@ a:hover {
     .theme-toggle, .print-button, .car, .road, .road-line {
         display: none !important;
     }
-    
-    /* Add print footer with URL */
-    body::after {
-        content: "Printed from matthollandcv.com";
-        position: fixed;
-        bottom: 5mm;
-        left: 5mm;
-        font-size: 8pt;
-        color: #999;
-        z-index: 9999;
-    }
 }
 
 /* Print button styles */
@@ -576,4 +565,37 @@ a:hover {
     .print-button {
         display: none;
     }
+}
+
+/* Make URLs clickable */
+.auto-link {
+    position: relative;
+    display: inline-block;
+    color: var(--primary-color);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* For specific text containing a URL */
+.url-text {
+    color: var(--primary-color);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* For a specific element that contains a URL you want clickable */
+.contains-url {
+    position: relative;
+}
+
+.contains-url[data-url]::after {
+    content: attr(data-url);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 1;
 }
