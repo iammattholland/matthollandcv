@@ -168,18 +168,19 @@ li {
 /* Compact tools section */
 .position p strong {
     display: inline !important;
-    margin-top: 5px !important;
+    margin-top: 0 !important;
     margin-bottom: 0 !important;
     color: #333 !important;
     font-size: 10pt !important;
+    vertical-align: baseline !important;
 }
 
-/* Make tools text appear on the same line */
+/* Make tools text appear on the same line with proper alignment */
 .position p:has(strong) {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    align-items: center !important;
-    gap: 5px !important;
+    display: block !important;
+    line-height: 1.5 !important;
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
 }
 
 /* Add a small space after "Tools:" text */
