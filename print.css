@@ -2,6 +2,19 @@
 @page {
     margin: 1.5cm;
     size: A4;
+    @top-center {
+        content: "Matt Holland - Professional Engineer and Project Manager";
+        font-family: 'Inter', Arial, sans-serif;
+        font-size: 9pt;
+        color: #666;
+    }
+    
+    @bottom-right {
+        content: "Page " counter(page) " of " counter(pages);
+        font-family: 'Inter', Arial, sans-serif;
+        font-size: 9pt;
+        color: #666;
+    }
 }
 
 /* Reset background colors and shadows for printing */
@@ -160,6 +173,15 @@ footer {
     padding-top: 10px !important;
     page-break-before: avoid !important;
     page-break-inside: avoid !important;
+}
+
+footer::after {
+    content: "Printed from matthollandcv.com";
+    display: block;
+    text-align: center;
+    font-size: 9pt;
+    color: #666;
+    margin-top: 5px;
 }
 
 /* Hide profile pic on print to save space */
