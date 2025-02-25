@@ -219,15 +219,6 @@ footer {
     page-break-inside: avoid !important;
 }
 
-footer::after {
-    content: "Printed from matthollandcv.com";
-    display: block;
-    text-align: center;
-    font-size: 9pt;
-    color: #666;
-    margin-top: 5px;
-}
-
 /* Remove animations and transitions */
 * {
     animation: none !important;
