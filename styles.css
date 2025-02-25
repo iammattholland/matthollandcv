@@ -185,7 +185,7 @@ a:hover {
 .road-line {
     left: 5%;
     top: 0;
-    width: 0.5px;
+    width: 1px;
     height: 100%;
     background-image: repeating-linear-gradient(
         to bottom,
@@ -195,9 +195,11 @@ a:hover {
         transparent 40px 
     );
     z-index: 1;
-    border-radius: 50%;
+    border-radius: 0;
     opacity: 1;
     visibility: visible;
+    display: block !important;
+    position: fixed !important;
 }
 
 .car {

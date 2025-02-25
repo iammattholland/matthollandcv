@@ -239,3 +239,9 @@ a[href^="https://www.linkedin.com"]:after {
 .awards.section {
     page-break-after: avoid !important;
 }
+
+/* Hide Contact Me line in print version */
+.profile-content p b, 
+.profile-content p:has(b) {
+    display: none !important;
+}
