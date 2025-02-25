@@ -74,27 +74,6 @@ function preparePrint() {
                 }
             });
             
-            // Add print footer with link
-            let printFooter = document.getElementById('print-footer');
-            if (!printFooter) {
-                printFooter = document.createElement('div');
-                printFooter.id = 'print-footer';
-                printFooter.className = 'print-only';
-                
-                // Create a proper anchor element for better browser compatibility
-                const link = document.createElement('a');
-                link.href = 'https://matthollandcv.com';
-                link.textContent = 'matthollandcv.com';
-                link.style.color = '#999';
-                link.style.textDecoration = 'underline';
-                
-                // Set the footer text with the link
-                printFooter.textContent = 'Printed from ';
-                printFooter.appendChild(link);
-                
-                document.body.appendChild(printFooter);
-            }
-            
             // Wait for all images to load or timeout after 1 second
             Promise.race([
                 Promise.all(imagePromises),
@@ -104,15 +83,6 @@ function preparePrint() {
                 document.body.style.display = 'none';
                 setTimeout(() => document.body.style.display = '', 0);
             });
-        });
-        
-        // Clean up after printing
-        window.addEventListener('afterprint', function() {
-            // Remove print footer
-            const printFooter = document.getElementById('print-footer');
-            if (printFooter) {
-                document.body.removeChild(printFooter);
-            }
         });
     } catch (error) {
         console.error('Error in print preparation:', error);

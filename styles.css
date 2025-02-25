@@ -519,21 +519,6 @@ a:hover {
     .theme-toggle, .print-button, .car, .road, .road-line {
         display: none !important;
     }
-    
-    /* Simple footer with link */
-    #print-footer {
-        position: fixed;
-        bottom: 5mm;
-        left: 5mm;
-        font-size: 8pt;
-        color: #999;
-        z-index: 9999;
-    }
-    
-    #print-footer a {
-        color: #999;
-        text-decoration: underline;
-    }
 }
 
 /* Print button styles */
