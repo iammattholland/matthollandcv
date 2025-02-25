@@ -211,12 +211,14 @@ a:hover {
     z-index: 1000;
     transform: translateY(0);
     transition: transform 0.1s ease-out;
+    background-color: transparent !important;
 }
 
 .car img {
     width: 100%;
     height: auto;
     animation: fadeIn 3s ease-in-out;
+    background-color: transparent !important;
 }
 
 /* Theme toggle */

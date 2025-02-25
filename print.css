@@ -236,6 +236,82 @@ footer::after {
     [data-theme="dark"] a {
         color: #000000 !important;
     }
+    
+    /* Remove all watermarks */
+    body::after {
+        content: none !important;
+    }
+    
+    @page {
+        background: none !important;
+        margin: 0.5cm;
+    }
+    
+    /* Hide elements not needed for printing */
+    .theme-toggle, .car, .road, .road-line {
+        display: none !important;
+    }
+    
+    /* Ensure all sections are visible */
+    .section {
+        opacity: 1 !important;
+        transform: none !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+        margin: 10px 0;
+    }
+    
+    /* Optimize typography for print */
+    body {
+        font-size: 12pt;
+        line-height: 1.3;
+        color: #000 !important;
+        background: #fff !important;
+    }
+    
+    h1, h2, h3, h4 {
+        color: #000 !important;
+        page-break-after: avoid;
+    }
+    
+    p, li {
+        color: #000 !important;
+    }
+    
+    a {
+        color: #000 !important;
+        text-decoration: none !important;
+    }
+    
+    /* Ensure images print properly */
+    img {
+        max-width: 100% !important;
+        page-break-inside: avoid;
+    }
+    
+    /* Add page breaks where appropriate */
+    h2 {
+        page-break-before: always;
+    }
+    
+    h2:first-of-type {
+        page-break-before: avoid;
+    }
+    
+    /* Ensure header prints nicely at top of first page */
+    header {
+        page-break-after: avoid;
+    }
+    
+    /* Footer at bottom of each page */
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+    }
 }
 
 /* Make title-and-logo more compact */

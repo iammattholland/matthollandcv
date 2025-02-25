@@ -59,13 +59,6 @@ function preparePrint() {
                     }
                 });
             });
-            
-            // Force load the car image if it exists
-            const carImg = document.querySelector('.car img');
-            if (carImg && carImg.dataset.src) {
-                carImg.src = carImg.dataset.src;
-                carImg.removeAttribute('data-src');
-            }
         });
         
         // Restore normal visibility after printing
@@ -172,6 +165,7 @@ const handleScroll = throttle(() => {
                 const car = document.querySelector(".car img");
                 if (!car) return;
                 
+                // Change to headlights version during scroll
                 car.src = "CarHeadlights.webp";
                 
                 const scrollTop = window.scrollY;
