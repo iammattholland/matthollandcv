@@ -39,8 +39,17 @@ body, .section, header, footer {
     background: none !important;
     color: black !important;
     box-shadow: none !important;
-    margin: 0 !important;
+}
+
+/* Restore proper margins */
+body {
+    margin: 0.5cm !important;
     padding: 0 !important;
+}
+
+.section {
+    margin: 10px 0 !important;
+    padding: 10px 0 !important;
 }
 
 /* Hide decorative elements */
@@ -70,9 +79,9 @@ h1, h2, h3, p, li {
 .section {
     break-inside: auto;
     page-break-inside: auto;
-    margin: 10px 0 !important;
-    padding: 10px 0 !important;
     border-bottom: 1px solid #eee;
+    /* Remove box borders */
+    border: none !important;
 }
 
 /* Optimize section headings */
@@ -112,6 +121,11 @@ h1, h2, h3, p, li {
     height: auto !important;
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
+}
+
+/* Fix logo loading for print */
+img[data-src] {
+    visibility: visible !important;
 }
 
 /* Position styling */
