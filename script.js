@@ -17,7 +17,7 @@ function handleImageError(img) {
     console.warn(`Failed to load image: ${img.dataset.src}`);
 }
 
-// Anti-scraping measures - simplified for better performance
+// Anti-scraping measures
 function addAntiScrapingProtection() {
     try {
         // Prevent right-click
@@ -46,18 +46,17 @@ function preparePrint() {
     try {
         // Force all sections to be visible for printing
         window.addEventListener('beforeprint', function() {
-            // Make all sections visible regardless of scroll position
+            // Make all sections visible
             document.querySelectorAll('.section').forEach(section => {
                 section.classList.add('visible');
             });
             
-            // Force load all lazy-loaded images, especially company logos
+            // Force load all lazy-loaded images
             const lazyImages = document.querySelectorAll('img[data-src]');
             const imagePromises = [];
             
             lazyImages.forEach(img => {
-                if (img.dataset.src && (img.src.startsWith('data:') || !img.classList.contains('image-loaded'))) {
-                    // Create a promise for each image load
+                if (img.dataset.src && img.src.startsWith('data:')) {
                     const promise = new Promise((resolve) => {
                         const newImg = new Image();
                         newImg.onload = () => {
@@ -82,28 +81,8 @@ function preparePrint() {
             ]).then(() => {
                 // Force browser to recognize the changes
                 document.body.style.display = 'none';
-                setTimeout(() => {
-                    document.body.style.display = '';
-                }, 0);
-                
-                console.log('Print preparation complete');
+                setTimeout(() => document.body.style.display = '', 0);
             });
-        });
-        
-        // Restore normal visibility after printing
-        window.addEventListener('afterprint', function() {
-            // Re-initialize section animations for non-visible sections
-            const sections = document.querySelectorAll('.section:not(.visible)');
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("visible");
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            
-            sections.forEach(section => observer.observe(section));
         });
     } catch (error) {
         console.error('Error in print preparation:', error);
@@ -113,15 +92,10 @@ function preparePrint() {
 // Theme functionality
 function initTheme() {
     try {
-        if (!localStorage.getItem('theme')) {
-            document.documentElement.setAttribute('data-theme', 'light');
-            localStorage.setItem('theme', 'light');
-        } else {
-            document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'));
-        }
+        const savedTheme = localStorage.getItem('theme');
+        document.documentElement.setAttribute('data-theme', savedTheme || 'light');
+        if (!savedTheme) localStorage.setItem('theme', 'light');
     } catch (error) {
-        console.error('Error initializing theme:', error);
-        // Fallback to light theme
         document.documentElement.setAttribute('data-theme', 'light');
     }
 }
@@ -162,19 +136,8 @@ const imageObserver = new IntersectionObserver((entries, observer) => {
     threshold: 0.1
 });
 
-// Performance monitoring
-const performanceObserver = new PerformanceObserver((list) => {
-    list.getEntries().forEach((entry) => {
-        if (entry.entryType === 'largest-contentful-paint') {
-            console.log('LCP:', entry.startTime);
-        }
-    });
-});
-
 // Car animation variables
-let scrollTimeout;
 let isScrolling = false;
-let lastScrollPosition = 0;
 let ticking = false;
 
 // Handle scroll end
@@ -209,7 +172,6 @@ const handleScroll = throttle(() => {
                 
                 ticking = false;
             } catch (error) {
-                console.error('Error in scroll handler:', error);
                 ticking = false;
             }
         });
@@ -223,18 +185,9 @@ const handleScroll = throttle(() => {
 
 // Cleanup function
 function cleanup() {
-    try {
-        if (imageObserver) imageObserver.disconnect();
-        if (performanceObserver) performanceObserver.disconnect();
-        window.removeEventListener("scroll", handleScroll);
-    } catch (error) {
-        console.error('Error in cleanup:', error);
-    }
+    if (imageObserver) imageObserver.disconnect();
+    window.removeEventListener("scroll", handleScroll);
 }
-
-// Preload car headlights image
-const preloadImage = new Image();
-preloadImage.src = "CarHeadlights.webp";
 
 // Initialize on DOM load
 document.addEventListener("DOMContentLoaded", function() {
@@ -271,8 +224,8 @@ document.addEventListener("DOMContentLoaded", function() {
         // Add print preparation
         preparePrint();
         
-        // Start performance monitoring
-        performanceObserver.observe({ entryTypes: ['largest-contentful-paint'] });
+        // Preload car headlights image
+        new Image().src = "CarHeadlights.webp";
     } catch (error) {
         console.error('Error initializing page:', error);
     }
