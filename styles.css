@@ -181,13 +181,7 @@ a:hover {
     height: 100%;
     background-color: var(--primary-color);
     box-shadow: var(--shadow);
-    border-radius: 2px;
-    /* Add gradient to make road more interesting */
-    background-image: linear-gradient(to bottom, 
-        var(--primary-color), 
-        var(--secondary-color) 50%, 
-        var(--primary-color)
-    );
+    border-radius: 50%;
 }
 
 .road-line {
@@ -225,15 +219,6 @@ a:hover {
     height: auto;
     animation: fadeIn 3s ease-in-out;
     background-color: transparent !important;
-    /* Add subtle hover effect */
-    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3));
-    transition: filter 0.3s ease;
-}
-
-/* Add hover effect to car */
-.car:hover img {
-    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
-    transform: scale(1.05);
 }
 
 /* Theme toggle */
