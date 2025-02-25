@@ -167,11 +167,24 @@ li {
 
 /* Compact tools section */
 .position p strong {
-    display: block;
+    display: inline !important;
     margin-top: 5px !important;
     margin-bottom: 0 !important;
     color: #333 !important;
     font-size: 10pt !important;
+}
+
+/* Make tools text appear on the same line */
+.position p:has(strong) {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 5px !important;
+}
+
+/* Add a small space after "Tools:" text */
+.position p strong:after {
+    content: " " !important;
 }
 
 /* Make education and other sections more compact */
