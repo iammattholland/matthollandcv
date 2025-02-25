@@ -177,23 +177,25 @@ a:hover {
 .road {
     left: 10%;
     top: 0;
-    width: 4px;
     height: 100%;
     background-color: var(--primary-color);
     box-shadow: var(--shadow);
     border-radius: 2px;
-    /* Add gradient to make road more interesting */
+    /* Create perspective effect with gradient */
     background-image: linear-gradient(to bottom, 
         var(--primary-color), 
         var(--secondary-color) 50%, 
         var(--primary-color)
     );
+    /* Use clip-path to create tapering effect */
+    clip-path: polygon(0% 0%, 100% 0%, 70% 100%, 30% 100%);
+    width: 8px;
+    transform-origin: top center;
 }
 
 .road-line {
     left: 5%;
     top: 0;
-    width: 1px;
     height: 100%;
     /* Create animated dashed line pattern with gradient */
     background-image: repeating-linear-gradient(
@@ -211,12 +213,40 @@ a:hover {
     position: fixed !important;
     /* Add animation for moving dashed line */
     animation: fadeIn 2s ease-in-out, roadLineMove 15s linear infinite;
+    /* Use clip-path to create tapering effect */
+    clip-path: polygon(0% 0%, 100% 0%, 70% 100%, 30% 100%);
+    width: 3px;
+    transform-origin: top center;
 }
 
 /* Add new animation for moving road line */
 @keyframes roadLineMove {
     0% { background-position: 0 0; }
     100% { background-position: 0 50px; }
+}
+
+/* Add perspective animation to road and road-line */
+@keyframes roadPerspective {
+    0% { 
+        clip-path: polygon(0% 0%, 100% 0%, 70% 100%, 30% 100%);
+        transform: scaleY(1);
+    }
+    50% { 
+        clip-path: polygon(10% 0%, 90% 0%, 65% 100%, 35% 100%);
+        transform: scaleY(0.98);
+    }
+    100% { 
+        clip-path: polygon(0% 0%, 100% 0%, 70% 100%, 30% 100%);
+        transform: scaleY(1);
+    }
+}
+
+.road, .road-line {
+    animation: fadeIn 2s ease-in-out, roadPerspective 8s ease-in-out infinite;
+}
+
+.road-line {
+    animation: fadeIn 2s ease-in-out, roadLineMove 15s linear infinite, roadPerspective 8s ease-in-out infinite;
 }
 
 .car {
@@ -236,7 +266,7 @@ a:hover {
     background-color: transparent !important;
     /* Add subtle hover effect */
     filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3));
-    transition: filter 0.3s ease;
+    transition: filter 0.3s ease, transform 0.3s ease;
 }
 
 /* Add hover effect to car */
