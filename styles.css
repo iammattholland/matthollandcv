@@ -181,12 +181,8 @@ a:hover {
     background-color: var(--primary-color);
     box-shadow: var(--shadow);
     border-radius: 2px;
-    /* Create perspective effect with gradient */
-    background-image: linear-gradient(to bottom, 
-        var(--primary-color), 
-        var(--secondary-color) 50%, 
-        var(--primary-color)
-    );
+    /* Remove gradient, use solid theme color */
+    background-image: none;
     /* Use clip-path to create tapering effect */
     clip-path: polygon(0% 0%, 100% 0%, 70% 100%, 30% 100%);
     width: 8px;
