@@ -133,6 +133,9 @@ document.addEventListener("DOMContentLoaded", function() {
     
     // Add anti-scraping protection
     addAntiScrapingProtection();
+    
+    // Add print preparation
+    preparePrint();
 });
 
 // Performance monitoring
@@ -184,4 +187,47 @@ function addAntiScrapingProtection() {
     if (navigator.webdriver || /HeadlessChrome/.test(navigator.userAgent)) {
         document.body.innerHTML = '<h1>This content is not available in automated browsers</h1>';
     }
+}
+
+// Add print preparation function
+function preparePrint() {
+    // Force all sections to be visible for printing
+    window.addEventListener('beforeprint', function() {
+        // Make all sections visible regardless of scroll position
+        document.querySelectorAll('.section').forEach(section => {
+            section.classList.add('visible');
+            
+            // Force load any lazy-loaded images
+            const lazyImages = section.querySelectorAll('img[data-src]');
+            lazyImages.forEach(img => {
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                }
+            });
+        });
+        
+        // Force load the car image if it exists
+        const carImg = document.querySelector('.car img');
+        if (carImg && carImg.dataset.src) {
+            carImg.src = carImg.dataset.src;
+            carImg.removeAttribute('data-src');
+        }
+    });
+    
+    // Restore normal visibility after printing
+    window.addEventListener('afterprint', function() {
+        // Re-initialize section animations for non-visible sections
+        const sections = document.querySelectorAll('.section:not(.visible)');
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        sections.forEach(section => observer.observe(section));
+    });
 }
