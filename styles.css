@@ -520,16 +520,15 @@ a:hover {
         display: none !important;
     }
     
-    /* Style for print attribution in footer */
-    #print-attribution {
-        margin-top: 10px;
-        font-size: 10pt;
-        color: #ffffff;
-    }
-    
-    #print-attribution a {
-        color: #ffffff;
-        text-decoration: underline;
+    /* Add print footer with URL */
+    body::after {
+        content: "Printed from matthollandcv.com";
+        position: fixed;
+        bottom: 5mm;
+        left: 5mm;
+        font-size: 8pt;
+        color: #999;
+        z-index: 9999;
     }
 }
 

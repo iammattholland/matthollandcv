@@ -74,19 +74,23 @@ function preparePrint() {
                 }
             });
             
-            // Add print attribution after copyright
-            const footer = document.querySelector('footer');
-            if (footer) {
-                // Check if attribution already exists
-                if (!document.getElementById('print-attribution')) {
-                    const attribution = document.createElement('p');
-                    attribution.id = 'print-attribution';
-                    attribution.className = 'print-only';
-                    attribution.innerHTML = 'Printed from <a href="https://matthollandcv.com" target="_blank">matthollandcv.com</a>';
-                    
-                    // Add after the copyright text
-                    footer.appendChild(attribution);
-                }
+            // Add print footer with clickable URL
+            let printFooter = document.getElementById('print-footer');
+            if (!printFooter) {
+                printFooter = document.createElement('div');
+                printFooter.id = 'print-footer';
+                printFooter.className = 'print-only';
+                printFooter.style.position = 'fixed';
+                printFooter.style.bottom = '5mm';
+                printFooter.style.left = '5mm';
+                printFooter.style.fontSize = '8pt';
+                printFooter.style.color = '#999';
+                printFooter.style.zIndex = '9999';
+                
+                // Create the text and link
+                printFooter.innerHTML = 'Printed from <a href="https://matthollandcv.com" style="color:#999; text-decoration:underline;">matthollandcv.com</a>';
+                
+                document.body.appendChild(printFooter);
             }
             
             // Wait for all images to load or timeout after 1 second
@@ -102,10 +106,10 @@ function preparePrint() {
         
         // Clean up after printing
         window.addEventListener('afterprint', function() {
-            // Remove print attribution
-            const attribution = document.getElementById('print-attribution');
-            if (attribution) {
-                attribution.remove();
+            // Remove print footer
+            const printFooter = document.getElementById('print-footer');
+            if (printFooter) {
+                document.body.removeChild(printFooter);
             }
         });
     } catch (error) {
