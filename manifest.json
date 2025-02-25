@@ -8,15 +8,9 @@
     "description": "Professional Curriculum Vitae of Matt Holland, Professional Engineer and Project Manager",
     "icons": [
         {
-            "src": "icon-192.png",
+            "src": "Favicon.webp",
             "sizes": "192x192",
-            "type": "image/png",
-            "purpose": "any maskable"
-        },
-        {
-            "src": "icon-512.png",
-            "sizes": "512x512",
-            "type": "image/png",
+            "type": "image/webp",
             "purpose": "any maskable"
         }
     ]

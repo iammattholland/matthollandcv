@@ -2,19 +2,36 @@
 @page {
     margin: 1.5cm;
     size: A4;
-    @top-center {
-        content: "Matt Holland - Professional Engineer and Project Manager";
-        font-family: 'Inter', Arial, sans-serif;
-        font-size: 9pt;
-        color: #666;
+}
+
+/* Add header and footer for browsers that support it */
+@supports (content: attr(data)) {
+    @page {
+        @top-center {
+            content: "Matt Holland - Professional Engineer and Project Manager";
+            font-family: 'Inter', Arial, sans-serif;
+            font-size: 9pt;
+            color: #666;
+        }
+        
+        @bottom-right {
+            content: "Page " counter(page) " of " counter(pages);
+            font-family: 'Inter', Arial, sans-serif;
+            font-size: 9pt;
+            color: #666;
+        }
     }
-    
-    @bottom-right {
-        content: "Page " counter(page) " of " counter(pages);
-        font-family: 'Inter', Arial, sans-serif;
-        font-size: 9pt;
-        color: #666;
-    }
+}
+
+/* Fallback header for all pages */
+body::before {
+    content: "Matt Holland - Professional Engineer and Project Manager";
+    display: block;
+    text-align: center;
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 9pt;
+    color: #666;
+    margin-bottom: 10px;
 }
 
 /* Reset background colors and shadows for printing */
@@ -219,15 +236,6 @@ footer::after {
     [data-theme="dark"] a {
         color: #000000 !important;
     }
-    
-    /* Remove watermark */
-    body::after {
-        content: none !important;
-    }
-    
-    @page {
-        background: none !important;
-    }
 }
 
 /* Make title-and-logo more compact */
@@ -262,8 +270,12 @@ a[href^="https://www.linkedin.com"]:after {
     page-break-after: avoid !important;
 }
 
-/* Hide Contact Me line in print version */
-.profile-content p b, 
-.profile-content p:has(b) {
+/* Hide Contact Me line in print version - with better compatibility */
+.profile-content p b {
+    display: none !important;
+}
+
+/* Target the paragraph containing "Contact me" */
+.profile-content p:last-of-type {
     display: none !important;
 }
