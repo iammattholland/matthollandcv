@@ -177,7 +177,7 @@ a:hover {
 .road {
     left: 10%;
     top: 0;
-    height: 100%;
+    height: 100vh; /* Use viewport height instead of percentage */
     background-color: var(--primary-color);
     box-shadow: var(--shadow);
     border-radius: 2px;
@@ -188,12 +188,14 @@ a:hover {
     width: 8px;
     transform-origin: top center;
     animation: fadeIn 2s ease-in-out, roadPerspective 8s ease-in-out infinite;
+    transform: translateY(0); /* Ensure no vertical movement */
+    bottom: 0; /* Anchor to bottom as well */
 }
 
 .road-line {
     left: 5%;
     top: 0;
-    height: 100%;
+    height: 100vh; /* Use viewport height instead of percentage */
     /* Create dashed line pattern with gradient */
     background-image: repeating-linear-gradient(
         to bottom,
@@ -213,21 +215,23 @@ a:hover {
     width: 3px;
     transform-origin: top center;
     animation: fadeIn 2s ease-in-out, roadPerspective 8s ease-in-out infinite;
+    transform: translateY(0); /* Ensure no vertical movement */
+    bottom: 0; /* Anchor to bottom as well */
 }
 
 /* Add perspective animation to road and road-line */
 @keyframes roadPerspective {
     0% { 
         clip-path: polygon(0% 0%, 100% 0%, 70% 100%, 30% 100%);
-        transform: scaleY(1);
+        transform: scaleY(1) translateY(0); /* Keep vertical position fixed */
     }
     50% { 
         clip-path: polygon(10% 0%, 90% 0%, 65% 100%, 35% 100%);
-        transform: scaleY(0.98);
+        transform: scaleY(0.98) translateY(0); /* Keep vertical position fixed */
     }
     100% { 
         clip-path: polygon(0% 0%, 100% 0%, 70% 100%, 30% 100%);
-        transform: scaleY(1);
+        transform: scaleY(1) translateY(0); /* Keep vertical position fixed */
     }
 }
 
