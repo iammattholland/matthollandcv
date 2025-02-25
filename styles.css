@@ -519,6 +519,18 @@ a:hover {
     .theme-toggle, .print-button, .car, .road, .road-line {
         display: none !important;
     }
+    
+    /* Style for print attribution in footer */
+    #print-attribution {
+        margin-top: 10px;
+        font-size: 10pt;
+        color: #ffffff;
+    }
+    
+    #print-attribution a {
+        color: #ffffff;
+        text-decoration: underline;
+    }
 }
 
 /* Print button styles */

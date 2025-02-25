@@ -74,6 +74,21 @@ function preparePrint() {
                 }
             });
             
+            // Add print attribution after copyright
+            const footer = document.querySelector('footer');
+            if (footer) {
+                // Check if attribution already exists
+                if (!document.getElementById('print-attribution')) {
+                    const attribution = document.createElement('p');
+                    attribution.id = 'print-attribution';
+                    attribution.className = 'print-only';
+                    attribution.innerHTML = 'Printed from <a href="https://matthollandcv.com" target="_blank">matthollandcv.com</a>';
+                    
+                    // Add after the copyright text
+                    footer.appendChild(attribution);
+                }
+            }
+            
             // Wait for all images to load or timeout after 1 second
             Promise.race([
                 Promise.all(imagePromises),
@@ -83,6 +98,15 @@ function preparePrint() {
                 document.body.style.display = 'none';
                 setTimeout(() => document.body.style.display = '', 0);
             });
+        });
+        
+        // Clean up after printing
+        window.addEventListener('afterprint', function() {
+            // Remove print attribution
+            const attribution = document.getElementById('print-attribution');
+            if (attribution) {
+                attribution.remove();
+            }
         });
     } catch (error) {
         console.error('Error in print preparation:', error);
